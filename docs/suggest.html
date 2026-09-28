@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#2d5a27">
+  <meta name="theme-color" content="#0B8A8F">
   <meta name="description" content="Groundwork one-tap layout suggest demo.">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon-192.png" type="image/png">
@@ -11,15 +11,15 @@
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body class="min-h-screen flex flex-col">
-  <header class="border-b border-soil-200 bg-white/90 backdrop-blur sticky top-0 z-40">
+  <header class="border-b border-paper-300 bg-paper-50/90 backdrop-blur sticky top-0 z-40">
     <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
       <div class="flex items-center gap-4">
-        <a href="index.html" class="font-display text-xl font-bold text-leaf-600 tracking-tight">Groundwork</a>
-        <a href="https://frank-dixon.github.io/" class="text-sm font-semibold text-soil-500 hover:text-leaf-600" rel="noopener">Hub</a>
+        <a href="index.html" class="font-display text-xl font-bold text-turquoise-600 tracking-tight">Groundwork</a>
+        <a href="https://frank-dixon.github.io/" class="text-sm font-semibold text-ink-500 hover:text-turquoise-600" rel="noopener">Hub</a>
       </div>
       <nav class="flex flex-wrap items-center gap-1 sm:gap-2 text-sm font-semibold">
-        <a href="plants.html" class="rounded-lg px-2 py-1.5 text-soil-600 hover:bg-leaf-50 hover:text-leaf-700">Plants</a>
-        <a href="suggest.html" class="rounded-lg px-2 py-1.5 bg-leaf-50 text-leaf-700">Suggest</a>
+        <a href="plants.html" class="rounded-lg px-2 py-1.5 text-ink-600 hover:bg-turquoise-50 hover:text-turquoise-700">Plants</a>
+        <a href="suggest.html" class="rounded-lg px-2 py-1.5 bg-turquoise-50 text-turquoise-700">Suggest</a>
       </nav>
     </div>
   </header>
@@ -27,7 +27,7 @@
   <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-6">
     <div class="mb-6">
       <h1 class="text-3xl">One-tap suggest</h1>
-      <p class="text-soil-500">Pick crops, set bed size, and fill a spacing grid with companion-aware placement. Demo only — nothing is saved.</p>
+      <p class="text-ink-500">Pick crops, set bed size, and fill a spacing grid with companion-aware placement. Demo only — nothing is saved.</p>
     </div>
 
     <div class="grid gap-6 lg:grid-cols-2">
@@ -50,12 +50,12 @@
           <button type="button" id="btn-suggest" class="btn-primary">Suggest layout</button>
           <button type="button" id="btn-clear" class="btn-secondary">Clear</button>
         </div>
-        <p id="status" class="text-sm text-soil-500"></p>
+        <p id="status" class="text-sm text-ink-500"></p>
       </section>
 
       <section class="card">
         <h2 class="mb-3 text-xl">Bed preview</h2>
-        <div id="bed-canvas-wrap" class="relative w-full overflow-hidden rounded-lg border border-soil-200 bg-leaf-50" style="aspect-ratio: 1 / 1.2;">
+        <div id="bed-canvas-wrap" class="relative w-full overflow-hidden rounded-lg border border-paper-300 bg-turquoise-50" style="aspect-ratio: 1 / 1.2;">
           <svg id="bed-svg" class="h-full w-full" viewBox="0 0 400 480" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Suggested plant placements"></svg>
         </div>
         <ul id="legend" class="mt-4 flex flex-wrap gap-2 text-sm"></ul>
@@ -63,7 +63,7 @@
     </div>
   </main>
 
-  <footer class="border-t border-soil-200 bg-white py-6 text-center text-sm text-soil-500">
+  <footer class="border-t border-paper-300 bg-paper-50 py-6 text-center text-sm text-ink-500">
     <p>Groundwork · soil-first garden planning</p>
   </footer>
   <script src="js/plants.js"></script>
@@ -71,9 +71,9 @@
   <script src="js/app.js" defer></script>
   <script>
     const COLORS = [
-      '#2d5a27', '#6aaf52', '#9a7350', '#4a7c3f', '#b89674',
-      '#244820', '#7d5a3c', '#8fc87a', '#5c4033', '#1e3a1b',
-      '#3d2914', '#bbdfab',
+      '#0B8A8F', '#1AA8AD', '#4FC5C9', '#097378', '#075C60',
+      '#9a7350', '#b89674', '#6aaf52', '#8fc87a', '#5c4033',
+      '#7d5a3c', '#4a7c3f',
     ];
 
     function escapeHtml(s) {
@@ -91,7 +91,7 @@
     function renderChecks(plants) {
       const defaults = new Set(['tomato', 'basil', 'lettuce', 'carrot']);
       document.getElementById('plant-checks').innerHTML = plants.map((p) => `
-        <label class="flex items-center gap-2 rounded-lg border border-soil-200 bg-sand-50 px-2 py-1.5 text-sm text-soil-700 hover:border-leaf-300">
+        <label class="flex items-center gap-2 rounded-lg border border-paper-300 bg-paper-50 px-2 py-1.5 text-sm text-ink-700 hover:border-turquoise-300">
           <input type="checkbox" value="${escapeHtml(p.slug)}" ${defaults.has(p.slug) ? 'checked' : ''}>
           <span>${escapeHtml(p.name)}</span>
         </label>
@@ -128,9 +128,9 @@
       }
 
       svg.innerHTML = `
-        <rect x="0" y="0" width="${vw}" height="${vh}" fill="#f0f7ed"/>
-        <rect x="${ox}" y="${oy}" width="${bedW}" height="${bedH}" fill="#ebe0d4" stroke="#7d5a3c" stroke-width="2" rx="4"/>
-        <text x="${ox + 4}" y="${oy - 6}" font-size="11" fill="#5c4033">${bed.width_ft} × ${bed.length_ft} ft</text>
+        <rect x="0" y="0" width="${vw}" height="${vh}" fill="#F7F3EB"/>
+        <rect x="${ox}" y="${oy}" width="${bedW}" height="${bedH}" fill="#EFE8DC" stroke="#0B8A8F" stroke-width="2" rx="4"/>
+        <text x="${ox + 4}" y="${oy - 6}" font-size="11" fill="#4A3F32">${bed.width_ft} × ${bed.length_ft} ft</text>
         ${marks}
       `;
 
@@ -140,7 +140,7 @@
       }
       legend.innerHTML = Object.keys(counts).map((slug) => {
         const p = placements.find((x) => x.plant.slug === slug).plant;
-        return `<li class="inline-flex items-center gap-1.5 rounded-full bg-white border border-soil-200 px-2.5 py-1">
+        return `<li class="inline-flex items-center gap-1.5 rounded-full bg-paper-50 border border-paper-300 px-2.5 py-1">
           <span class="inline-block h-2.5 w-2.5 rounded-full" style="background:${colorBy[slug]}"></span>
           ${escapeHtml(p.name)} ×${counts[slug]}
         </li>`;

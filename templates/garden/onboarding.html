@@ -2,9 +2,9 @@
 {% block title %}Set up your plot — Groundwork{% endblock %}
 {% block content %}
 <div class="mx-auto max-w-lg">
-  <p class="mb-2 text-sm font-bold uppercase tracking-wider text-leaf-600">First run</p>
+  <p class="mb-2 text-sm font-bold uppercase tracking-wider text-turquoise-600">First run</p>
   <h1 class="mb-2 text-3xl">Name your plot</h1>
-  <p class="mb-6 text-soil-600">Tell us the size in feet. We’ll create a starter layout with one main bed.</p>
+  <p class="mb-6 text-ink-600">Tell us the size in feet. We’ll create a starter layout with one main bed.</p>
   <form method="post" class="card space-y-4">
     {% csrf_token %}
     {% for field in form %}
@@ -17,7 +17,7 @@
     <button type="submit" class="btn-primary w-full">Create plot & layout</button>
   </form>
   {% if has_layouts %}
-  <p class="mt-4 text-center text-sm"><a href="{% url 'home' %}" class="text-leaf-600 font-semibold">Skip — back to layouts</a></p>
+  <p class="mt-4 text-center text-sm"><a href="{% url 'home' %}" class="text-turquoise-600 font-semibold">Skip — back to layouts</a></p>
   {% endif %}
 </div>
 {% endblock %}

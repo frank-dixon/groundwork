@@ -3,7 +3,7 @@
 {% block content %}
 <div class="mx-auto max-w-md">
   <h1 class="mb-2 text-3xl">Add plant</h1>
-  <p class="mb-6 text-soil-500">to {{ bed.name }} ({{ bed.layout.name }})</p>
+  <p class="mb-6 text-ink-500">to {{ bed.name }} ({{ bed.layout.name }})</p>
   <form method="post" class="card space-y-4">
     {% csrf_token %}
     {% for field in form %}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#2d5a27">
+  <meta name="theme-color" content="#0B8A8F">
   <meta name="description" content="Groundwork plant bible — common vegetables with spacing and citations.">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon-192.png" type="image/png">
@@ -11,15 +11,15 @@
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body class="min-h-screen flex flex-col">
-  <header class="border-b border-soil-200 bg-white/90 backdrop-blur sticky top-0 z-40">
+  <header class="border-b border-paper-300 bg-paper-50/90 backdrop-blur sticky top-0 z-40">
     <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
       <div class="flex items-center gap-4">
-        <a href="index.html" class="font-display text-xl font-bold text-leaf-600 tracking-tight">Groundwork</a>
-        <a href="https://frank-dixon.github.io/" class="text-sm font-semibold text-soil-500 hover:text-leaf-600" rel="noopener">Hub</a>
+        <a href="index.html" class="font-display text-xl font-bold text-turquoise-600 tracking-tight">Groundwork</a>
+        <a href="https://frank-dixon.github.io/" class="text-sm font-semibold text-ink-500 hover:text-turquoise-600" rel="noopener">Hub</a>
       </div>
       <nav class="flex flex-wrap items-center gap-1 sm:gap-2 text-sm font-semibold">
-        <a href="plants.html" class="rounded-lg px-2 py-1.5 bg-leaf-50 text-leaf-700">Plants</a>
-        <a href="suggest.html" class="rounded-lg px-2 py-1.5 text-soil-600 hover:bg-leaf-50 hover:text-leaf-700">Suggest</a>
+        <a href="plants.html" class="rounded-lg px-2 py-1.5 bg-turquoise-50 text-turquoise-700">Plants</a>
+        <a href="suggest.html" class="rounded-lg px-2 py-1.5 text-ink-600 hover:bg-turquoise-50 hover:text-turquoise-700">Suggest</a>
       </nav>
     </div>
   </header>
@@ -27,14 +27,14 @@
   <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-6">
     <div class="mb-6">
       <h1 class="text-3xl">Plant bible</h1>
-      <p class="text-soil-500">Common vegetables with spacing, growth, and companions — cited from open extension sources.</p>
+      <p class="text-ink-500">Common vegetables with spacing, growth, and companions — cited from open extension sources.</p>
     </div>
     <div id="plant-grid" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      <p class="text-soil-500 col-span-full">Loading plants…</p>
+      <p class="text-ink-500 col-span-full">Loading plants…</p>
     </div>
   </main>
 
-  <footer class="border-t border-soil-200 bg-white py-6 text-center text-sm text-soil-500">
+  <footer class="border-t border-paper-300 bg-paper-50 py-6 text-center text-sm text-ink-500">
     <p>Groundwork · soil-first garden planning</p>
   </footer>
   <script src="js/plants.js"></script>
@@ -45,10 +45,10 @@
       try {
         const plants = await GroundworkPlants.loadPlants();
         grid.innerHTML = plants.map((p) => `
-          <a href="plant.html?slug=${encodeURIComponent(p.slug)}" class="card hover:border-leaf-400 transition">
-            <h2 class="text-lg text-leaf-700">${escapeHtml(p.name)}</h2>
-            <p class="text-xs text-soil-400 italic">${escapeHtml(p.scientific_name || '')}</p>
-            <p class="mt-2 text-sm text-soil-600">
+          <a href="plant.html?slug=${encodeURIComponent(p.slug)}" class="card hover:border-turquoise-400 transition">
+            <h2 class="text-lg text-turquoise-700">${escapeHtml(p.name)}</h2>
+            <p class="text-xs text-ink-400 italic">${escapeHtml(p.scientific_name || '')}</p>
+            <p class="mt-2 text-sm text-ink-600">
               ${p.spacing_inches}" spacing · ${escapeHtml(GroundworkPlants.sunLabel(p))} · ${escapeHtml(GroundworkPlants.maturity(p))}
             </p>
           </a>

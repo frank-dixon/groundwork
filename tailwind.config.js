@@ -4,6 +4,38 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        paper: {
+          50: '#FBF9F4',
+          100: '#F7F3EB',
+          200: '#EFE8DC',
+          300: '#E4D9C8',
+          400: '#D4C4AE',
+        },
+        ink: {
+          50: '#F5F2EE',
+          100: '#E8E2D9',
+          200: '#C9BFAF',
+          300: '#A89884',
+          400: '#7A6B58',
+          500: '#5C4F3F',
+          600: '#4A3F32',
+          700: '#3D3429',
+          800: '#2F281F',
+          900: '#241E18',
+        },
+        turquoise: {
+          50: '#E6F7F7',
+          100: '#C5EFEF',
+          200: '#8FDFE1',
+          300: '#4FC5C9',
+          400: '#1AA8AD',
+          500: '#0B8A8F',
+          600: '#097378',
+          700: '#075C60',
+          800: '#064A4D',
+          900: '#04383A',
+        },
+        /* Craft accents — demoted from primary CTA/shell */
         soil: {
           50: '#f7f3ee',
           100: '#ebe0d4',

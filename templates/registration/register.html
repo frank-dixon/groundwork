@@ -12,12 +12,12 @@
              name="{{ field.name }}" id="{{ field.id_for_label }}"
              {% if field.field.required %}required{% endif %}
              {% if field.value %}value="{{ field.value }}"{% endif %}>
-      {% if field.help_text %}<p class="mt-1 text-xs text-soil-400">{{ field.help_text|striptags }}</p>{% endif %}
+      {% if field.help_text %}<p class="mt-1 text-xs text-ink-400">{{ field.help_text|striptags }}</p>{% endif %}
       {% if field.errors %}<p class="mt-1 text-sm text-red-600">{{ field.errors|striptags }}</p>{% endif %}
     </div>
     {% endfor %}
     <button type="submit" class="btn-primary w-full">Sign up</button>
   </form>
-  <p class="mt-4 text-center text-sm text-soil-600">Have an account? <a href="{% url 'login' %}" class="font-semibold text-leaf-600">Log in</a></p>
+  <p class="mt-4 text-center text-sm text-ink-600">Have an account? <a href="{% url 'login' %}" class="font-semibold text-turquoise-600">Log in</a></p>
 </div>
 {% endblock %}

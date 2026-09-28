@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#2d5a27">
+  <meta name="theme-color" content="#0B8A8F">
   <meta name="description" content="Groundwork — plan garden beds, place plants, and grow with confidence.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -16,26 +16,26 @@
   <link rel="stylesheet" href="{% static 'css/app.css' %}">
 </head>
 <body class="min-h-screen flex flex-col">
-  <header class="border-b border-soil-200 bg-white/90 backdrop-blur sticky top-0 z-40">
+  <header class="border-b border-paper-300 bg-paper-50/90 backdrop-blur sticky top-0 z-40">
     <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
       <div class="flex items-center gap-4">
-        <a href="{% url 'home' %}" class="font-display text-xl font-bold text-leaf-600 tracking-tight">
+        <a href="{% url 'home' %}" class="font-display text-xl font-bold text-turquoise-600 tracking-tight">
           Groundwork
         </a>
-        <a href="https://frank-dixon.github.io/" class="text-sm font-semibold text-soil-500 hover:text-leaf-600" rel="noopener">
+        <a href="https://frank-dixon.github.io/" class="text-sm font-semibold text-ink-500 hover:text-turquoise-600" rel="noopener">
           Hub
         </a>
       </div>
       <nav class="flex flex-wrap items-center gap-1 sm:gap-2 text-sm font-semibold">
-        <a href="{% url 'plant_list' %}" class="rounded-lg px-2 py-1.5 text-soil-600 hover:bg-leaf-50 hover:text-leaf-700">Plants</a>
+        <a href="{% url 'plant_list' %}" class="rounded-lg px-2 py-1.5 text-ink-600 hover:bg-turquoise-50 hover:text-turquoise-700">Plants</a>
         {% if user.is_authenticated %}
-          <a href="{% url 'layout_list' %}" class="rounded-lg px-2 py-1.5 text-soil-600 hover:bg-leaf-50 hover:text-leaf-700">Layouts</a>
+          <a href="{% url 'layout_list' %}" class="rounded-lg px-2 py-1.5 text-ink-600 hover:bg-turquoise-50 hover:text-turquoise-700">Layouts</a>
           <a href="{% url 'pro' %}" class="rounded-lg px-2 py-1.5 text-amber-700 hover:bg-amber-50">Pro</a>
           <form action="{% url 'logout' %}" method="post" class="inline">{% csrf_token %}
-            <button type="submit" class="rounded-lg px-2 py-1.5 text-soil-500 hover:bg-soil-100">Log out</button>
+            <button type="submit" class="rounded-lg px-2 py-1.5 text-ink-500 hover:bg-paper-200">Log out</button>
           </form>
         {% else %}
-          <a href="{% url 'login' %}" class="rounded-lg px-2 py-1.5 text-soil-600 hover:bg-leaf-50">Log in</a>
+          <a href="{% url 'login' %}" class="rounded-lg px-2 py-1.5 text-ink-600 hover:bg-turquoise-50">Log in</a>
           <a href="{% url 'register' %}" class="btn-primary text-sm !py-1.5">Sign up</a>
         {% endif %}
       </nav>
@@ -47,8 +47,8 @@
     {% for message in messages %}
     <div class="rounded-lg border px-4 py-2 text-sm
       {% if message.tags == 'error' %}border-red-300 bg-red-50 text-red-800
-      {% elif message.tags == 'success' %}border-leaf-300 bg-leaf-50 text-leaf-800
-      {% else %}border-soil-200 bg-soil-50 text-soil-700{% endif %}">
+      {% elif message.tags == 'success' %}border-turquoise-300 bg-turquoise-50 text-turquoise-800
+      {% else %}border-paper-300 bg-paper-200 text-ink-700{% endif %}">
       {{ message }}
     </div>
     {% endfor %}
@@ -59,7 +59,7 @@
     {% block content %}{% endblock %}
   </main>
 
-  <footer class="border-t border-soil-200 bg-white py-6 text-center text-sm text-soil-500">
+  <footer class="border-t border-paper-300 bg-paper-50 py-6 text-center text-sm text-ink-500">
     <p>Groundwork · soil-first garden planning</p>
   </footer>
   <script src="{% static 'js/app.js' %}" defer></script>

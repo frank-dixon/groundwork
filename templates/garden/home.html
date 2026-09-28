@@ -4,7 +4,7 @@
 <div class="mb-6 flex flex-wrap items-end justify-between gap-3">
   <div>
     <h1 class="text-3xl">Your layouts</h1>
-    <p class="text-soil-500">Pick a layout to edit beds and plants.</p>
+    <p class="text-ink-500">Pick a layout to edit beds and plants.</p>
   </div>
   <div class="flex gap-2">
     <a href="{% url 'onboarding' %}?force=1" class="btn-secondary text-sm">New plot</a>
@@ -13,15 +13,15 @@
 </div>
 <div class="grid gap-4 sm:grid-cols-2">
   {% for layout in layouts %}
-  <a href="{{ layout.get_absolute_url }}" class="card hover:border-leaf-400 hover:shadow-md transition">
-    <h2 class="text-xl text-leaf-700">{{ layout.name }}</h2>
-    <p class="mt-1 text-sm text-soil-500">
+  <a href="{{ layout.get_absolute_url }}" class="card hover:border-turquoise-400 hover:shadow-md transition">
+    <h2 class="text-xl text-turquoise-700">{{ layout.name }}</h2>
+    <p class="mt-1 text-sm text-ink-500">
       {% if layout.plot %}{{ layout.plot.name }} · {{ layout.plot.width_ft }}×{{ layout.plot.length_ft }} ft{% else %}No plot linked{% endif %}
       · {{ layout.beds.count }} bed{{ layout.beds.count|pluralize }}
     </p>
   </a>
   {% empty %}
-  <p class="text-soil-500">No layouts yet.</p>
+  <p class="text-ink-500">No layouts yet.</p>
   {% endfor %}
 </div>
 {% endblock %}
