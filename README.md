@@ -37,7 +37,7 @@ Runs Tailwind watch and chokidar/esbuild minify of `src/js/*.js` → `static/js/
 2. **Named layouts CRUD** — beds + plant placements for logged-in users
 3. **PWA** — `manifest.webmanifest`, `sw.js`, icons, meta tags in base template
 4. **Plant bible** — ~22 common veggies with spacing, growth copy, companions, and citations; `seed_plants` management command
-5. **One-tap suggest** — fills beds using spacing + companion scoring
+5. **One-tap suggest** — curated bed templates/guilds (Three Sisters, tomato+basil, salad, roots, brassicas…) plus per-crop spacing blocks, with in-UI citations
 6. **Hub** header link → https://frank-dixon.github.io/
 7. **Stripe Pro stub** — `/pro/` placeholder only (no billing)
 8. **GitHub Pages demo** — static surface under `docs/` (bible + suggest); Django remains source of truth for auth/layouts

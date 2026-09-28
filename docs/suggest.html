@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0B8A8F">
-  <meta name="description" content="Groundwork one-tap layout suggest demo.">
+  <meta name="description" content="Groundwork intentional bed layout suggest — templates, spacing, companions, citations.">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon-192.png" type="image/png">
   <title>Suggest layout — Groundwork</title>
@@ -32,7 +32,7 @@
   <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-6">
     <div class="mb-6">
       <h1 class="text-3xl">One-tap suggest</h1>
-      <p class="text-ink-500">Pick crops, set bed size, and fill a spacing grid with companion-aware placement. Demo only — nothing is saved.</p>
+      <p class="text-ink-500">Pick crops and bed size. We match curated bed templates (Three Sisters, tomato+basil, salad, roots, brassicas…) then fill remaining space with per-crop spacing blocks—not a random scatter grid. Demo only — nothing is saved.</p>
     </div>
 
     <div class="grid gap-6 lg:grid-cols-2">
@@ -61,11 +61,36 @@
       <section class="card">
         <h2 class="mb-3 text-xl">Bed preview</h2>
         <div id="bed-canvas-wrap" class="relative w-full overflow-hidden rounded-lg border border-paper-300 bg-turquoise-50" style="aspect-ratio: 1 / 1.2;">
-          <svg id="bed-svg" class="h-full w-full" viewBox="0 0 400 480" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Suggested plant placements"></svg>
+          <svg id="bed-svg" class="h-full w-full" viewBox="0 0 400 480" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Suggested bed blocks and plant placements"></svg>
         </div>
         <ul id="legend" class="mt-4 flex flex-wrap gap-2 text-sm"></ul>
       </section>
     </div>
+
+    <section id="why-panel" class="card mt-6 space-y-4 hidden">
+      <h2 class="text-xl text-turquoise-700">Why this layout</h2>
+      <p id="why-summary" class="text-sm text-ink-600"></p>
+      <div id="why-templates" class="space-y-3"></div>
+      <div id="why-succession" class="hidden">
+        <h3 class="text-sm font-bold text-ink-700 mb-1">Succession notes</h3>
+        <ul id="why-succession-list" class="list-disc pl-5 text-sm text-ink-600 space-y-1"></ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-bold text-ink-700 mb-1">Sources &amp; citations</h3>
+        <ul id="why-citations" class="list-disc pl-5 text-sm text-ink-600 space-y-1"></ul>
+      </div>
+    </section>
+
+    <section class="card mt-6">
+      <h2 class="mb-2 text-lg">How suggest works</h2>
+      <ul class="list-disc pl-5 text-sm text-ink-600 space-y-1">
+        <li>Prefer curated guilds/templates over freeform scatter (Three Sisters, tomato+basil, salad cut-and-come-again, root bed, brassica companions, etc.).</li>
+        <li>Each crop uses its own <code class="text-xs">spacing_inches</code> / row spacing—not one median grid step for everything.</li>
+        <li>Companions stay grouped; antagonists are hard-avoided in adjacent blocks.</li>
+        <li>Full-sun crops are grouped when leftover space is filled with row/square-foot blocks.</li>
+      </ul>
+      <p class="mt-3 text-xs text-ink-400">Guidance cited from UMN Extension, Cornell, Old Farmer’s Almanac, Mel Bartholomew Square Foot spacing tables (fair-use citation of public guidance), and companion-planting extension pages. Template definitions are cached in <code class="text-xs">data/layout_sources.json</code>.</p>
+    </section>
   </main>
 
   <footer class="border-t border-paper-300 bg-paper-50/95 py-6 text-center text-sm text-ink-500">
@@ -106,7 +131,9 @@
       `).join('');
     }
 
-    function draw(placements, bed) {
+    function draw(result, bed) {
+      const placements = result.placements || [];
+      const blocks = result.blocks || [];
       const svg = document.getElementById('bed-svg');
       const legend = document.getElementById('legend');
       const pad = 24;
@@ -124,14 +151,32 @@
       for (const pl of placements) {
         if (!(pl.plant.slug in colorBy)) colorBy[pl.plant.slug] = COLORS[ci++ % COLORS.length];
       }
+      for (const b of blocks) {
+        if (!(b.plant_slug in colorBy)) colorBy[b.plant_slug] = COLORS[ci++ % COLORS.length];
+      }
+
+      let blockMarks = '';
+      for (const b of blocks) {
+        const bx = ox + b.x_ft * scale;
+        const by = oy + b.y_ft * scale;
+        const bw = Math.max(2, b.width_ft * scale);
+        const bh = Math.max(2, b.length_ft * scale);
+        const fill = colorBy[b.plant_slug] || '#0B8A8F';
+        blockMarks += `<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" fill="${fill}" opacity="0.18" stroke="${fill}" stroke-width="1.5" rx="3">
+          <title>${escapeHtml(b.label || b.plant_slug)} block (${b.kind})</title>
+        </rect>`;
+        if (bh > 14 && bw > 28) {
+          blockMarks += `<text x="${bx + 4}" y="${by + 12}" font-size="10" font-weight="600" fill="#4A3F32" opacity="0.85">${escapeHtml((b.label || '').slice(0, 14))}</text>`;
+        }
+      }
 
       let marks = '';
       for (const pl of placements) {
         const cx = ox + pl.x_ft * scale;
         const cy = oy + pl.y_ft * scale;
-        const r = Math.max(6, Math.min(14, (pl.plant.spacing_inches / 12) * scale * 0.35));
-        marks += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${colorBy[pl.plant.slug]}" opacity="0.9">
-          <title>${escapeHtml(pl.plant.name)} @ ${pl.x_ft}, ${pl.y_ft} ft</title>
+        const r = Math.max(5, Math.min(12, (pl.plant.spacing_inches / 12) * scale * 0.32));
+        marks += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${colorBy[pl.plant.slug]}" opacity="0.92">
+          <title>${escapeHtml(pl.plant.name)} @ ${pl.x_ft}, ${pl.y_ft} ft · ${pl.plant.spacing_inches}" spacing</title>
         </circle>`;
       }
 
@@ -139,6 +184,7 @@
         <rect x="0" y="0" width="${vw}" height="${vh}" fill="#F7F3EB"/>
         <rect x="${ox}" y="${oy}" width="${bedW}" height="${bedH}" fill="#EFE8DC" stroke="#0B8A8F" stroke-width="2" rx="4"/>
         <text x="${ox + 4}" y="${oy - 6}" font-size="11" fill="#4A3F32">${bed.width_ft} × ${bed.length_ft} ft</text>
+        ${blockMarks}
         ${marks}
       `;
 
@@ -151,8 +197,39 @@
         return `<li class="inline-flex items-center gap-1.5 rounded-full bg-paper-50 border border-paper-300 px-2.5 py-1">
           <span class="inline-block h-2.5 w-2.5 rounded-full" style="background:${colorBy[slug]}"></span>
           ${escapeHtml(p.name)} ×${counts[slug]}
+          <span class="text-ink-400 text-xs">(${p.spacing_inches}")</span>
         </li>`;
       }).join('');
+    }
+
+    function renderWhy(result) {
+      const panel = document.getElementById('why-panel');
+      if (!result || !(result.templates_used || []).length) {
+        panel.classList.add('hidden');
+        return;
+      }
+      panel.classList.remove('hidden');
+      document.getElementById('why-summary').textContent = result.summary || '';
+      document.getElementById('why-templates').innerHTML = (result.templates_used || []).map((t) => `
+        <div class="rounded-lg border border-paper-300 bg-paper-50 px-3 py-2">
+          <p class="font-semibold text-turquoise-700">${escapeHtml(t.name)}</p>
+          <p class="text-sm text-ink-600 mt-0.5">${escapeHtml(t.rationale || '')}</p>
+          <p class="text-xs text-ink-400 mt-1">Crops: ${escapeHtml((t.crops || []).join(', '))}</p>
+        </div>
+      `).join('');
+
+      const succ = result.succession_notes || [];
+      const succWrap = document.getElementById('why-succession');
+      if (succ.length) {
+        succWrap.classList.remove('hidden');
+        document.getElementById('why-succession-list').innerHTML = succ.map((n) => `<li>${escapeHtml(n)}</li>`).join('');
+      } else {
+        succWrap.classList.add('hidden');
+      }
+
+      document.getElementById('why-citations').innerHTML = (result.citations || []).map((c) => `
+        <li><a class="text-turquoise-700 hover:underline" href="${escapeHtml(c.url)}" target="_blank" rel="noopener">${escapeHtml(c.org)}</a> — ${escapeHtml(c.title)}</li>
+      `).join('');
     }
 
     function runSuggest() {
@@ -164,12 +241,15 @@
       const status = document.getElementById('status');
       if (!plants.length) {
         status.textContent = 'Pick at least one plant.';
-        draw([], bed);
+        draw({ placements: [], blocks: [] }, bed);
+        renderWhy(null);
         return;
       }
-      const placed = GroundworkSuggest.suggestFill(bed, plants);
-      status.textContent = `Placed ${placed.length} plants across ${plants.length} crop${plants.length === 1 ? '' : 's'}.`;
-      draw(placed, bed);
+      const result = GroundworkSuggest.suggestFillWithPlan(bed, plants);
+      const tmpl = (result.templates_used || []).map((t) => t.name).join('; ') || 'per-crop rows';
+      status.textContent = `Placed ${result.placements.length} plants · ${tmpl}`;
+      draw(result, bed);
+      renderWhy(result);
     }
 
     document.getElementById('btn-suggest').addEventListener('click', runSuggest);
@@ -180,11 +260,13 @@
         width_ft: parseFloat(document.getElementById('bed-width').value) || 4,
         length_ft: parseFloat(document.getElementById('bed-length').value) || 8,
       };
-      draw([], bed);
+      draw({ placements: [], blocks: [] }, bed);
+      renderWhy(null);
     });
 
     (async function () {
       try {
+        await GroundworkSuggest.loadSources();
         allPlants = await GroundworkPlants.loadPlants();
         renderChecks(allPlants);
         runSuggest();

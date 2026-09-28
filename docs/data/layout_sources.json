@@ -1,0 +1,229 @@
+{
+  "citations": [
+    {
+      "id": "umn",
+      "title": "Vegetables \u2014 Growing guides",
+      "url": "https://extension.umn.edu/vegetables",
+      "org": "University of Minnesota Extension"
+    },
+    {
+      "id": "cornell",
+      "title": "Home Gardening \u2014 Vegetables",
+      "url": "https://horticulture.cals.cornell.edu/",
+      "org": "Cornell University Horticulture"
+    },
+    {
+      "id": "almanac",
+      "title": "Vegetable Growing Guides",
+      "url": "https://www.almanac.com/gardening/growing-guides",
+      "org": "Old Farmer\u2019s Almanac"
+    },
+    {
+      "id": "sfg",
+      "title": "Square Foot Gardening plant spacing (fair-use citation of public guidance)",
+      "url": "https://squarefootgardening.org/",
+      "org": "Mel Bartholomew / Square Foot Gardening Foundation"
+    },
+    {
+      "id": "usda",
+      "title": "USDA Plant Hardiness Zone Map",
+      "url": "https://planthardiness.ars.usda.gov/",
+      "org": "USDA ARS"
+    },
+    {
+      "id": "three_sisters",
+      "title": "Three Sisters garden (corn, bean, squash polyculture)",
+      "url": "https://www.almanac.com/content/three-sisters-corn-bean-squash",
+      "org": "Old Farmer\u2019s Almanac / traditional Indigenous companion planting"
+    },
+    {
+      "id": "companions",
+      "title": "Companion planting overview",
+      "url": "https://extension.umn.edu/planting-and-growing-guides/companion-planting-home-gardens",
+      "org": "University of Minnesota Extension"
+    }
+  ],
+  "templates": [
+    {
+      "id": "three_sisters",
+      "name": "Three Sisters",
+      "crops": [
+        "corn",
+        "bean",
+        "squash"
+      ],
+      "min_match": 2,
+      "priority": 100,
+      "pattern": "three_sisters",
+      "rationale": "Classic polyculture: corn as a trellis, beans fix nitrogen, squash shades soil and deters pests.",
+      "citation_ids": [
+        "three_sisters",
+        "almanac",
+        "companions"
+      ],
+      "succession": null
+    },
+    {
+      "id": "tomato_basil",
+      "name": "Tomato & basil guild",
+      "crops": [
+        "tomato",
+        "basil"
+      ],
+      "min_match": 2,
+      "priority": 90,
+      "pattern": "anchor_companion",
+      "anchor": "tomato",
+      "companions": [
+        "basil"
+      ],
+      "rationale": "Basil is a classic tomato companion\u2014shared full-sun bed with aromatic underplanting between tomato stations.",
+      "citation_ids": [
+        "companions",
+        "umn",
+        "almanac"
+      ],
+      "succession": "Tuck quick lettuce or radish between young tomatoes until canopy fills (text note only)."
+    },
+    {
+      "id": "nightshade_herbs",
+      "name": "Nightshade & herbs",
+      "crops": [
+        "tomato",
+        "pepper",
+        "eggplant",
+        "basil",
+        "onion"
+      ],
+      "min_match": 2,
+      "priority": 80,
+      "pattern": "rows_by_spacing",
+      "rationale": "Group heat-loving nightshades with basil/onion companions; keep full-sun crops together.",
+      "citation_ids": [
+        "umn",
+        "cornell",
+        "companions"
+      ],
+      "succession": null
+    },
+    {
+      "id": "salad_cut_come_again",
+      "name": "Salad cut-and-come-again",
+      "crops": [
+        "lettuce",
+        "spinach",
+        "cilantro",
+        "chard",
+        "radish"
+      ],
+      "min_match": 2,
+      "priority": 85,
+      "pattern": "dense_blocks",
+      "rationale": "Dense leafy blocks at each crop\u2019s own spacing for repeated harvest; mix radish for quick returns.",
+      "citation_ids": [
+        "sfg",
+        "umn",
+        "almanac"
+      ],
+      "succession": "Sow radish every 10\u201314 days between slower lettuce/chard for succession harvests."
+    },
+    {
+      "id": "root_bed",
+      "name": "Root bed",
+      "crops": [
+        "carrot",
+        "radish",
+        "beet",
+        "onion",
+        "garlic"
+      ],
+      "min_match": 2,
+      "priority": 84,
+      "pattern": "rows_by_spacing",
+      "rationale": "Root crops in dedicated rows at catalog spacing; onions/garlic deter some pests among carrots and beets.",
+      "citation_ids": [
+        "sfg",
+        "umn",
+        "cornell"
+      ],
+      "succession": "Interseed radish between carrot rows\u2014radish matures and clears before carrots need the space."
+    },
+    {
+      "id": "brassica_companions",
+      "name": "Brassica bed with companions",
+      "crops": [
+        "cabbage",
+        "broccoli",
+        "kale",
+        "beet",
+        "onion"
+      ],
+      "min_match": 2,
+      "priority": 88,
+      "pattern": "anchor_companion",
+      "anchor_any": [
+        "cabbage",
+        "broccoli",
+        "kale"
+      ],
+      "companions": [
+        "beet",
+        "onion"
+      ],
+      "rationale": "Give brassicas wide spacing; edge with beet/onion companions. Avoid planting tomatoes beside cabbage.",
+      "citation_ids": [
+        "umn",
+        "cornell",
+        "companions"
+      ],
+      "succession": null,
+      "require_any": [
+        "cabbage",
+        "broccoli",
+        "kale"
+      ]
+    },
+    {
+      "id": "cucumber_legume",
+      "name": "Cucumber & legumes",
+      "crops": [
+        "cucumber",
+        "bean",
+        "pea",
+        "radish"
+      ],
+      "min_match": 2,
+      "priority": 75,
+      "pattern": "rows_by_spacing",
+      "rationale": "Cucumbers with pea/bean nitrogen partners and radish as a traditional cucumber companion.",
+      "citation_ids": [
+        "almanac",
+        "companions",
+        "umn"
+      ],
+      "succession": null
+    },
+    {
+      "id": "potato_patch",
+      "name": "Potato patch",
+      "crops": [
+        "potato",
+        "bean",
+        "corn"
+      ],
+      "min_match": 1,
+      "priority": 70,
+      "pattern": "rows_by_spacing",
+      "require_any": [
+        "potato"
+      ],
+      "rationale": "Potatoes in their own block with compatible bean/corn; keep clear of tomato, cucumber, and squash antagonists.",
+      "citation_ids": [
+        "umn",
+        "cornell",
+        "companions"
+      ],
+      "succession": null
+    }
+  ]
+}

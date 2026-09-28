@@ -13,7 +13,7 @@ from django.conf import settings
 
 from .forms import BedForm, LayoutForm, PlacementForm, PlotForm, RegisterForm, SuggestForm
 from .models import Bed, Layout, Plant, PlantPlacement, Plot
-from .suggest import suggest_fill
+from .suggest import all_layout_citations, suggest_fill_with_plan
 
 
 class GroundworkLoginView(LoginView):
@@ -126,6 +126,8 @@ def layout_detail(request, pk):
             'layout': layout,
             'bed_form': bed_form,
             'suggest_form': suggest_form,
+            'layout_citations': all_layout_citations(),
+            'suggest_plan': request.session.pop('suggest_plan', None),
         },
     )
 
@@ -221,13 +223,24 @@ def layout_suggest(request, pk):
         messages.error(request, 'Add a bed before suggesting a layout.')
         return redirect(layout.get_absolute_url())
     total = 0
+    last_plan = None
     for bed in beds:
-        placed = suggest_fill(bed, plants, clear=True)
-        total += len(placed)
+        result = suggest_fill_with_plan(bed, plants, clear=True)
+        total += len(result.placements)
+        last_plan = result.plan
+    tmpl_names = [t['name'] for t in (last_plan.templates_used if last_plan else [])]
+    why = '; '.join(tmpl_names) if tmpl_names else 'per-crop spacing blocks'
     messages.success(
         request,
-        f'Suggested {total} placement(s) across {len(beds)} bed(s) using spacing and companions.',
+        f'Suggested {total} placement(s) across {len(beds)} bed(s) using intentional templates: {why}.',
     )
+    if last_plan:
+        request.session['suggest_plan'] = {
+            'summary': last_plan.summary,
+            'templates_used': last_plan.templates_used,
+            'succession_notes': last_plan.succession_notes,
+            'citations': last_plan.citations,
+        }
     return redirect(layout.get_absolute_url())
 
 

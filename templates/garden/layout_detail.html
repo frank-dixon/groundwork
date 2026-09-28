@@ -41,7 +41,7 @@
 {# Suggest #}
 <div class="card mb-6">
   <h2 class="mb-2 text-lg">One-tap suggest</h2>
-  <p class="mb-4 text-sm text-ink-500">Pick crops; we’ll fill every bed using spacing and companions (clears existing placements).</p>
+  <p class="mb-4 text-sm text-ink-500">Pick crops; we match curated bed templates (Three Sisters, tomato+basil, salad, roots, brassicas…) then fill remaining space with per-crop spacing blocks—companions grouped, antagonists separated. Clears existing placements.</p>
   <form method="post" action="{% url 'layout_suggest' layout.pk %}">
     {% csrf_token %}
     <div class="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
@@ -53,6 +53,49 @@
     </div>
     <button type="submit" class="btn-primary" data-confirm="Replace all placements in this layout’s beds?">Suggest layout</button>
   </form>
+
+  {% if suggest_plan %}
+  <div class="mt-5 border-t border-paper-300 pt-4 space-y-3">
+    <h3 class="text-base font-bold text-turquoise-700">Why this layout</h3>
+    <p class="text-sm text-ink-600">{{ suggest_plan.summary }}</p>
+    {% for t in suggest_plan.templates_used %}
+    <div class="rounded-lg border border-paper-300 bg-paper-50 px-3 py-2">
+      <p class="font-semibold text-turquoise-700">{{ t.name }}</p>
+      <p class="text-sm text-ink-600 mt-0.5">{{ t.rationale }}</p>
+      {% if t.crops %}<p class="text-xs text-ink-400 mt-1">Crops: {{ t.crops|join:", " }}</p>{% endif %}
+    </div>
+    {% endfor %}
+    {% if suggest_plan.succession_notes %}
+    <div>
+      <h4 class="text-sm font-bold text-ink-700 mb-1">Succession notes</h4>
+      <ul class="list-disc pl-5 text-sm text-ink-600 space-y-1">
+        {% for note in suggest_plan.succession_notes %}
+        <li>{{ note }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% if suggest_plan.citations %}
+    <div>
+      <h4 class="text-sm font-bold text-ink-700 mb-1">Sources &amp; citations</h4>
+      <ul class="list-disc pl-5 text-sm text-ink-600 space-y-1">
+        {% for c in suggest_plan.citations %}
+        <li><a class="text-turquoise-700 hover:underline" href="{{ c.url }}" target="_blank" rel="noopener">{{ c.org }}</a> — {{ c.title }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+  {% elif layout_citations %}
+  <div class="mt-5 border-t border-paper-300 pt-4">
+    <h3 class="text-sm font-bold text-ink-700 mb-1">Layout guidance sources</h3>
+    <ul class="list-disc pl-5 text-sm text-ink-600 space-y-1">
+      {% for c in layout_citations %}
+      <li><a class="text-turquoise-700 hover:underline" href="{{ c.url }}" target="_blank" rel="noopener">{{ c.org }}</a> — {{ c.title }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
 </div>
 
 {# Beds #}
