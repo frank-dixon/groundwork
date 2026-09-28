@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2d5a27">
+  <meta name="description" content="Groundwork plant detail.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <title>Plant — Groundwork</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="border-b border-soil-200 bg-white/90 backdrop-blur sticky top-0 z-40">
+    <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="font-display text-xl font-bold text-leaf-600 tracking-tight">Groundwork</a>
+        <a href="https://frank-dixon.github.io/" class="text-sm font-semibold text-soil-500 hover:text-leaf-600" rel="noopener">Hub</a>
+      </div>
+      <nav class="flex flex-wrap items-center gap-1 sm:gap-2 text-sm font-semibold">
+        <a href="plants.html" class="rounded-lg px-2 py-1.5 bg-leaf-50 text-leaf-700">Plants</a>
+        <a href="suggest.html" class="rounded-lg px-2 py-1.5 text-soil-600 hover:bg-leaf-50 hover:text-leaf-700">Suggest</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-6">
+    <div id="plant-detail">
+      <p class="text-soil-500">Loading…</p>
+    </div>
+  </main>
+
+  <footer class="border-t border-soil-200 bg-white py-6 text-center text-sm text-soil-500">
+    <p>Groundwork · soil-first garden planning</p>
+  </footer>
+  <script src="js/plants.js"></script>
+  <script src="js/app.js" defer></script>
+  <script>
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+    function paras(text) {
+      return escapeHtml(text || '').split(/\n+/).filter(Boolean).map((p) => `<p class="mb-3 last:mb-0">${p}</p>`).join('');
+    }
+    (async function () {
+      const root = document.getElementById('plant-detail');
+      const slug = new URLSearchParams(location.search).get('slug');
+      if (!slug) {
+        root.innerHTML = `<p class="text-soil-500">No plant selected. <a class="text-leaf-600 font-semibold" href="plants.html">Browse plants</a></p>`;
+        return;
+      }
+      try {
+        const plants = await GroundworkPlants.loadPlants();
+        const map = GroundworkPlants.bySlug(plants);
+        const p = map[slug];
+        if (!p) {
+          root.innerHTML = `<p class="text-red-700">Plant not found. <a class="text-leaf-600 font-semibold" href="plants.html">← Plants</a></p>`;
+          return;
+        }
+        document.title = `${p.name} — Groundwork`;
+        const comps = (p.companions || []).map((s) => map[s]).filter(Boolean);
+        const ants = (p.antagonists || []).map((s) => map[s]).filter(Boolean);
+        const cites = p.citations || [];
+        root.innerHTML = `
+          <article class="mx-auto max-w-2xl">
+            <p class="mb-1 text-sm"><a href="plants.html" class="text-leaf-600 font-semibold">← Plants</a></p>
+            <h1 class="text-4xl">${escapeHtml(p.name)}</h1>
+            ${p.scientific_name ? `<p class="mb-4 italic text-soil-500">${escapeHtml(p.scientific_name)}${p.family ? ` · ${escapeHtml(p.family)}` : ''}</p>` : ''}
+            <div class="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <div class="rounded-lg bg-leaf-50 p-3 text-center">
+                <p class="text-xs font-bold uppercase text-leaf-600">Spacing</p>
+                <p class="text-lg font-bold text-soil-700">${p.spacing_inches}"</p>
+              </div>
+              <div class="rounded-lg bg-leaf-50 p-3 text-center">
+                <p class="text-xs font-bold uppercase text-leaf-600">Rows</p>
+                <p class="text-lg font-bold text-soil-700">${p.row_spacing_inches}"</p>
+              </div>
+              <div class="rounded-lg bg-soil-50 p-3 text-center">
+                <p class="text-xs font-bold uppercase text-soil-500">Sun</p>
+                <p class="text-lg font-bold text-soil-700">${escapeHtml(GroundworkPlants.sunLabel(p))}</p>
+              </div>
+              <div class="rounded-lg bg-soil-50 p-3 text-center">
+                <p class="text-xs font-bold uppercase text-soil-500">Maturity</p>
+                <p class="text-lg font-bold text-soil-700">${escapeHtml(GroundworkPlants.maturity(p))}</p>
+              </div>
+            </div>
+            <section class="card mb-4">
+              <h2 class="mb-2 text-xl">How to grow</h2>
+              <div class="text-soil-700 leading-relaxed">${paras(p.how_to)}</div>
+            </section>
+            ${comps.length ? `
+            <section class="mb-4">
+              <h2 class="mb-2 text-lg">Companions</h2>
+              <div class="flex flex-wrap gap-2">
+                ${comps.map((c) => `<a href="plant.html?slug=${encodeURIComponent(c.slug)}" class="rounded-full bg-leaf-100 px-3 py-1 text-sm font-semibold text-leaf-800 hover:bg-leaf-200">${escapeHtml(c.name)}</a>`).join('')}
+              </div>
+            </section>` : ''}
+            ${ants.length ? `
+            <section class="mb-4">
+              <h2 class="mb-2 text-lg">Keep apart from</h2>
+              <div class="flex flex-wrap gap-2">
+                ${ants.map((a) => `<a href="plant.html?slug=${encodeURIComponent(a.slug)}" class="rounded-full bg-red-50 px-3 py-1 text-sm font-semibold text-red-800 hover:bg-red-100">${escapeHtml(a.name)}</a>`).join('')}
+              </div>
+            </section>` : ''}
+            ${cites.length ? `
+            <section class="mt-6 border-t border-soil-200 pt-4">
+              <h2 class="mb-2 text-sm font-bold uppercase tracking-wider text-soil-500">Sources</h2>
+              <ul class="space-y-1 text-sm text-soil-600">
+                ${cites.map((cite) => `
+                  <li>
+                    ${cite.url ? `<a href="${escapeHtml(cite.url)}" class="text-leaf-700 underline" rel="noopener" target="_blank">${escapeHtml(cite.title || 'Source')}</a>` : escapeHtml(cite.title || '')}
+                    ${cite.org ? `<span class="text-soil-400"> — ${escapeHtml(cite.org)}</span>` : ''}
+                  </li>`).join('')}
+              </ul>
+            </section>` : ''}
+          </article>
+        `;
+      } catch (err) {
+        root.innerHTML = `<p class="text-red-700">Could not load plant data.</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>

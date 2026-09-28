@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2d5a27">
+  <meta name="description" content="Groundwork — plan garden beds, place plants, and grow with confidence.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Groundwork">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <title>Groundwork — garden planner</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="border-b border-soil-200 bg-white/90 backdrop-blur sticky top-0 z-40">
+    <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="font-display text-xl font-bold text-leaf-600 tracking-tight">Groundwork</a>
+        <a href="https://frank-dixon.github.io/" class="text-sm font-semibold text-soil-500 hover:text-leaf-600" rel="noopener">Hub</a>
+      </div>
+      <nav class="flex flex-wrap items-center gap-1 sm:gap-2 text-sm font-semibold">
+        <a href="plants.html" class="rounded-lg px-2 py-1.5 text-soil-600 hover:bg-leaf-50 hover:text-leaf-700">Plants</a>
+        <a href="suggest.html" class="rounded-lg px-2 py-1.5 text-soil-600 hover:bg-leaf-50 hover:text-leaf-700">Suggest</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-6">
+    <div class="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+      <strong>Static demo.</strong> Plant bible browse and one-tap layout suggest work offline here.
+      Full plot onboarding, saved layouts, and auth need the local Django app
+      (<code class="rounded bg-amber-100 px-1">python manage.py runserver</code>).
+    </div>
+
+    <section class="grid gap-10 md:grid-cols-2 md:items-center">
+      <div>
+        <p class="mb-2 text-sm font-bold uppercase tracking-wider text-leaf-600">Phase 1</p>
+        <h1 class="mb-4 text-4xl leading-tight text-soil-700 sm:text-5xl">Plan the beds. Place the plants. Grow.</h1>
+        <p class="mb-6 text-lg text-soil-600">
+          Groundwork is a lean garden planner: name your plot, sketch beds, browse a plant bible with real spacing,
+          and one-tap suggest a companion-aware layout.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="plants.html" class="btn-primary">Browse plants</a>
+          <a href="suggest.html" class="btn-secondary">Try suggest</a>
+        </div>
+      </div>
+      <div class="card bg-gradient-to-br from-leaf-50 to-sand-100 border-leaf-200">
+        <h2 class="mb-3 text-xl">What you get</h2>
+        <ul class="space-y-3 text-soil-700">
+          <li class="flex gap-2"><span class="text-leaf-600 font-bold">✓</span> Plant bible with citations (~22 veggies)</li>
+          <li class="flex gap-2"><span class="text-leaf-600 font-bold">✓</span> One-tap layout suggest (spacing + companions)</li>
+          <li class="flex gap-2"><span class="text-leaf-600 font-bold">✓</span> Installable PWA shell</li>
+          <li class="flex gap-2"><span class="text-soil-400 font-bold">·</span> <span class="text-soil-500">Plot onboarding, saved layouts &amp; auth → local Django</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-soil-200 bg-white py-6 text-center text-sm text-soil-500">
+    <p>Groundwork · soil-first garden planning</p>
+  </footer>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

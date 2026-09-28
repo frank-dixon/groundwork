@@ -2,7 +2,11 @@
 
 Lean garden planner PWA: name a plot, manage beds & plant placements, browse a cited plant bible, and one-tap suggest companion-aware layouts.
 
+**Live demo (static):** https://frank-dixon.github.io/groundwork/
+
 **Stack:** Django (session auth) · Tailwind CSS 3 · vanilla JS (esbuild) · SQLite
+
+GitHub Pages deploys from the `/docs` folder on `main` (plant bible + suggest demo). Full save/auth layouts need local Django.
 
 ## Quick start
 
@@ -25,7 +29,7 @@ Open http://127.0.0.1:8000/ — sign up, complete plot onboarding, then edit lay
 npm run watch
 ```
 
-Runs Tailwind watch and chokidar/esbuild minify of `src/js/*.js` → `static/js/` via `concurrently`.
+Runs Tailwind watch and chokidar/esbuild minify of `src/js/*.js` → `static/js/` via `concurrently`. `npm run build` also syncs CSS/icons into `docs/` for Pages.
 
 ## Features (Phase 1)
 
@@ -36,12 +40,13 @@ Runs Tailwind watch and chokidar/esbuild minify of `src/js/*.js` → `static/js/
 5. **One-tap suggest** — fills beds using spacing + companion scoring
 6. **Hub** header link → https://frank-dixon.github.io/
 7. **Stripe Pro stub** — `/pro/` placeholder only (no billing)
+8. **GitHub Pages demo** — static surface under `docs/` (bible + suggest); Django remains source of truth for auth/layouts
 
 ## Notes
 
 - `TIME_ZONE = America/New_York`
-- Do **not** enable GitHub Pages for this repo (app is meant to run as Django, not static Pages)
 - Soil/leaf palette via Tailwind theme tokens (`soil-*`, `leaf-*`, `sand-*`)
+- Pages source: `main` branch, `/docs` folder
 
 ## License
 

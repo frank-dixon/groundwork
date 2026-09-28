@@ -1,0 +1,738 @@
+[
+  {
+    "slug": "basil",
+    "name": "Basil",
+    "scientific_name": "Ocimum basilicum",
+    "family": "Lamiaceae",
+    "spacing_inches": 10,
+    "row_spacing_inches": 12,
+    "days_to_maturity_min": 50,
+    "days_to_maturity_max": 75,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "50\u201375 days",
+    "how_to": "Basil loves heat and full sun; wait until nights are reliably warm before transplanting outdoors. Space plants about 10 inches apart and pinch growing tips early to encourage bushy growth. Water at the soil line and harvest leaves regularly before flowering for the best flavor. Protect from cold snaps\u2014basil is frost tender.",
+    "companions": [
+      "pepper",
+      "tomato"
+    ],
+    "antagonists": [],
+    "citations": [
+      {
+        "title": "Grow Your Own",
+        "url": "https://www.rhs.org.uk/vegetables",
+        "org": "Royal Horticultural Society"
+      },
+      {
+        "title": "Vegetable Growing Guides",
+        "url": "https://www.almanac.com/gardening/growing-guides",
+        "org": "Old Farmer\u2019s Almanac"
+      }
+    ]
+  },
+  {
+    "slug": "beet",
+    "name": "Beet",
+    "scientific_name": "Beta vulgaris",
+    "family": "Amaranthaceae",
+    "spacing_inches": 4,
+    "row_spacing_inches": 12,
+    "days_to_maturity_min": 50,
+    "days_to_maturity_max": 70,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "50\u201370 days",
+    "how_to": "Beets grow best in cool weather with even moisture and moderately fertile soil. Sow directly and thin clusters to about 4 inches so roots can size up; use thinnings as greens. Keep soil from crusting over germinating seed. Harvest roots at golf-ball to tennis-ball size for tender texture.",
+    "companions": [
+      "cabbage",
+      "kale",
+      "lettuce",
+      "onion"
+    ],
+    "antagonists": [],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Vegetable Growing Guides",
+        "url": "https://www.almanac.com/gardening/growing-guides",
+        "org": "Old Farmer\u2019s Almanac"
+      }
+    ]
+  },
+  {
+    "slug": "broccoli",
+    "name": "Broccoli",
+    "scientific_name": "Brassica oleracea var. italica",
+    "family": "Brassicaceae",
+    "spacing_inches": 18,
+    "row_spacing_inches": 24,
+    "days_to_maturity_min": 60,
+    "days_to_maturity_max": 90,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "60\u201390 days",
+    "how_to": "Broccoli prefers cool temperatures and rich, well-drained soil in full sun. Set transplants 18 inches apart and keep them evenly watered through head formation. Cut the central head when buds are tight and green, before florets begin to open. Many varieties then produce smaller side shoots for a longer harvest window.",
+    "companions": [
+      "beet",
+      "onion"
+    ],
+    "antagonists": [],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Home Gardening \u2014 Vegetables",
+        "url": "https://horticulture.cals.cornell.edu/",
+        "org": "Cornell University Horticulture"
+      }
+    ]
+  },
+  {
+    "slug": "bean",
+    "name": "Bush Bean",
+    "scientific_name": "Phaseolus vulgaris",
+    "family": "Fabaceae",
+    "spacing_inches": 4,
+    "row_spacing_inches": 18,
+    "days_to_maturity_min": 50,
+    "days_to_maturity_max": 60,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "50\u201360 days",
+    "how_to": "Bush beans fix some of their own nitrogen and grow well in ordinary garden soil with full sun. Sow after the last frost when soil has warmed, placing seeds about 4 inches apart in rows 18 inches apart. Avoid working among wet plants to limit disease spread. Pick pods while they are still slender and tender; frequent harvest encourages more flowers.",
+    "companions": [
+      "cabbage",
+      "carrot",
+      "cucumber",
+      "corn"
+    ],
+    "antagonists": [
+      "garlic",
+      "onion"
+    ],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Vegetable Growing Guides",
+        "url": "https://www.almanac.com/gardening/growing-guides",
+        "org": "Old Farmer\u2019s Almanac"
+      }
+    ]
+  },
+  {
+    "slug": "cabbage",
+    "name": "Cabbage",
+    "scientific_name": "Brassica oleracea var. capitata",
+    "family": "Brassicaceae",
+    "spacing_inches": 18,
+    "row_spacing_inches": 24,
+    "days_to_maturity_min": 65,
+    "days_to_maturity_max": 100,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "65\u2013100 days",
+    "how_to": "Cabbage prefers cool seasons and steady fertility in full sun. Transplant 18 inches apart and use floating row cover to exclude cabbage worms. Water regularly so heads form evenly without splitting after rains. Cut heads when they are firm and fully sized for the variety.",
+    "companions": [
+      "bean",
+      "onion"
+    ],
+    "antagonists": [
+      "tomato"
+    ],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Home Gardening \u2014 Vegetables",
+        "url": "https://horticulture.cals.cornell.edu/",
+        "org": "Cornell University Horticulture"
+      }
+    ]
+  },
+  {
+    "slug": "carrot",
+    "name": "Carrot",
+    "scientific_name": "Daucus carota",
+    "family": "Apiaceae",
+    "spacing_inches": 3,
+    "row_spacing_inches": 12,
+    "days_to_maturity_min": 55,
+    "days_to_maturity_max": 80,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "55\u201380 days",
+    "how_to": "Carrots need loose, stone-free soil so roots can grow straight. Sow seed thinly about \u00bc inch deep, then thin seedlings to roughly 3 inches apart once they are a few inches tall. Keep the seedbed evenly moist until germination, which can take up to three weeks. Harvest when shoulders reach the expected diameter for the variety, usually after 55\u201380 days.",
+    "companions": [
+      "lettuce",
+      "onion",
+      "pea",
+      "radish",
+      "tomato"
+    ],
+    "antagonists": [],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Grow Your Own",
+        "url": "https://www.rhs.org.uk/vegetables",
+        "org": "Royal Horticultural Society"
+      }
+    ]
+  },
+  {
+    "slug": "cilantro",
+    "name": "Cilantro",
+    "scientific_name": "Coriandrum sativum",
+    "family": "Apiaceae",
+    "spacing_inches": 4,
+    "row_spacing_inches": 8,
+    "days_to_maturity_min": 30,
+    "days_to_maturity_max": 45,
+    "sun_needs": "partial",
+    "sun_needs_display": "Partial sun",
+    "maturity_display": "30\u201345 days",
+    "how_to": "Cilantro prefers cool weather and will bolt quickly in summer heat. Sow successive small plantings every few weeks in spring and fall, thinning to about 4 inches. Provide afternoon shade in warmer months and keep soil moist. Harvest leaves young; allow some plants to flower if you also want coriander seed.",
+    "companions": [
+      "lettuce",
+      "spinach",
+      "tomato"
+    ],
+    "antagonists": [],
+    "citations": [
+      {
+        "title": "Grow Your Own",
+        "url": "https://www.rhs.org.uk/vegetables",
+        "org": "Royal Horticultural Society"
+      },
+      {
+        "title": "Vegetable Growing Guides",
+        "url": "https://www.almanac.com/gardening/growing-guides",
+        "org": "Old Farmer\u2019s Almanac"
+      }
+    ]
+  },
+  {
+    "slug": "cucumber",
+    "name": "Cucumber",
+    "scientific_name": "Cucumis sativus",
+    "family": "Cucurbitaceae",
+    "spacing_inches": 12,
+    "row_spacing_inches": 36,
+    "days_to_maturity_min": 50,
+    "days_to_maturity_max": 70,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "50\u201370 days",
+    "how_to": "Cucumbers grow quickly in warm, fertile soil with full sun. Sow or transplant after frost, spacing hills or plants about 12 inches apart along a trellis, or farther apart if vines sprawl. Provide steady moisture; uneven watering often causes bitter fruit. Pick fruits young and often so the plant keeps producing through the season.",
+    "companions": [
+      "bean",
+      "pea",
+      "radish"
+    ],
+    "antagonists": [
+      "potato"
+    ],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Grow Your Own",
+        "url": "https://www.rhs.org.uk/vegetables",
+        "org": "Royal Horticultural Society"
+      }
+    ]
+  },
+  {
+    "slug": "eggplant",
+    "name": "Eggplant",
+    "scientific_name": "Solanum melongena",
+    "family": "Solanaceae",
+    "spacing_inches": 18,
+    "row_spacing_inches": 30,
+    "days_to_maturity_min": 65,
+    "days_to_maturity_max": 90,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "65\u201390 days",
+    "how_to": "Eggplant demands heat; transplant only after soil and nights are warm. Space plants about 18 inches apart in full sun and consider black mulch to warm the root zone. Stake taller varieties and keep soil evenly moist. Harvest fruits when the skin is glossy; dull skin often means seeds have hardened.",
+    "companions": [
+      "bean",
+      "pepper",
+      "spinach"
+    ],
+    "antagonists": [],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Vegetable Growing Guides",
+        "url": "https://www.almanac.com/gardening/growing-guides",
+        "org": "Old Farmer\u2019s Almanac"
+      }
+    ]
+  },
+  {
+    "slug": "garlic",
+    "name": "Garlic",
+    "scientific_name": "Allium sativum",
+    "family": "Amaryllidaceae",
+    "spacing_inches": 6,
+    "row_spacing_inches": 12,
+    "days_to_maturity_min": 240,
+    "days_to_maturity_max": 270,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "240\u2013270 days",
+    "how_to": "Plant garlic cloves in fall in most temperate regions so roots establish before winter. Set cloves point-up about 6 inches apart and 2 inches deep, then mulch heavily. Water in spring as bulbs size; stop watering when leaves yellow. Cure harvested bulbs in shade with good airflow before storing.",
+    "companions": [
+      "beet",
+      "carrot",
+      "tomato"
+    ],
+    "antagonists": [],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Grow Your Own",
+        "url": "https://www.rhs.org.uk/vegetables",
+        "org": "Royal Horticultural Society"
+      }
+    ]
+  },
+  {
+    "slug": "kale",
+    "name": "Kale",
+    "scientific_name": "Brassica oleracea var. acephala",
+    "family": "Brassicaceae",
+    "spacing_inches": 12,
+    "row_spacing_inches": 18,
+    "days_to_maturity_min": 50,
+    "days_to_maturity_max": 70,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "50\u201370 days",
+    "how_to": "Kale is hardy and productive in cool weather, with flavor that often sweetens after light frost. Transplant or thin seedlings to about 12 inches apart so leaves can expand. Provide fertile soil and steady moisture; harvest outer leaves while leaving the growing tip intact. Use row cover early to reduce flea beetle damage on young plants.",
+    "companions": [
+      "beet",
+      "onion"
+    ],
+    "antagonists": [],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Grow Your Own",
+        "url": "https://www.rhs.org.uk/vegetables",
+        "org": "Royal Horticultural Society"
+      }
+    ]
+  },
+  {
+    "slug": "lettuce",
+    "name": "Lettuce",
+    "scientific_name": "Lactuca sativa",
+    "family": "Asteraceae",
+    "spacing_inches": 8,
+    "row_spacing_inches": 12,
+    "days_to_maturity_min": 30,
+    "days_to_maturity_max": 60,
+    "sun_needs": "partial",
+    "sun_needs_display": "Partial sun",
+    "maturity_display": "30\u201360 days",
+    "how_to": "Lettuce prefers cool weather and can take partial sun in hot climates. Sow succession plantings every two weeks in spring and again in fall for a continuous harvest. Thin to about 8 inches for head types, or harvest baby leaves earlier at tighter spacing. Keep soil moist and provide afternoon shade when temperatures climb to delay bolting.",
+    "companions": [
+      "carrot",
+      "onion",
+      "radish"
+    ],
+    "antagonists": [],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Vegetable Growing Guides",
+        "url": "https://www.almanac.com/gardening/growing-guides",
+        "org": "Old Farmer\u2019s Almanac"
+      }
+    ]
+  },
+  {
+    "slug": "onion",
+    "name": "Onion",
+    "scientific_name": "Allium cepa",
+    "family": "Amaryllidaceae",
+    "spacing_inches": 4,
+    "row_spacing_inches": 12,
+    "days_to_maturity_min": 90,
+    "days_to_maturity_max": 120,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "90\u2013120 days",
+    "how_to": "Onions need full sun and fertile, well-drained soil; choose day-length varieties suited to your latitude. Set sets or transplants about 4 inches apart in rows a foot apart. Water regularly while bulbs are sizing, then ease off as tops begin to yellow and fall. Cure harvested bulbs in a warm, airy place before storage.",
+    "companions": [
+      "beet",
+      "carrot",
+      "lettuce",
+      "tomato"
+    ],
+    "antagonists": [
+      "bean",
+      "pea"
+    ],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Vegetable Growing Guides",
+        "url": "https://www.almanac.com/gardening/growing-guides",
+        "org": "Old Farmer\u2019s Almanac"
+      }
+    ]
+  },
+  {
+    "slug": "pea",
+    "name": "Pea",
+    "scientific_name": "Pisum sativum",
+    "family": "Fabaceae",
+    "spacing_inches": 3,
+    "row_spacing_inches": 18,
+    "days_to_maturity_min": 55,
+    "days_to_maturity_max": 70,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "55\u201370 days",
+    "how_to": "Peas are a cool-season crop best sown as soon as the soil can be worked in spring. Plant seeds about 3 inches apart along a low trellis or fence for easier picking. Provide even moisture during flowering and pod fill. Harvest snap and shell peas when pods are plump but before seeds become starchy.",
+    "companions": [
+      "carrot",
+      "cucumber",
+      "radish",
+      "corn"
+    ],
+    "antagonists": [
+      "garlic",
+      "onion"
+    ],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Home Gardening \u2014 Vegetables",
+        "url": "https://horticulture.cals.cornell.edu/",
+        "org": "Cornell University Horticulture"
+      }
+    ]
+  },
+  {
+    "slug": "pepper",
+    "name": "Pepper",
+    "scientific_name": "Capsicum annuum",
+    "family": "Solanaceae",
+    "spacing_inches": 18,
+    "row_spacing_inches": 24,
+    "days_to_maturity_min": 60,
+    "days_to_maturity_max": 90,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "60\u201390 days",
+    "how_to": "Peppers need full sun and consistently warm temperatures; transplant only after nights stay above about 50\u00b0F. Space plants 18 inches apart so air can move between canopies and reduce fungal pressure. Keep soil evenly moist but never waterlogged, and side-dress lightly once fruits set. Harvest sweet peppers when fully sized and colored, or pick hot peppers as they mature to the desired heat.",
+    "companions": [
+      "basil",
+      "carrot",
+      "onion",
+      "tomato"
+    ],
+    "antagonists": [],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Vegetable Growing Guides",
+        "url": "https://www.almanac.com/gardening/growing-guides",
+        "org": "Old Farmer\u2019s Almanac"
+      }
+    ]
+  },
+  {
+    "slug": "potato",
+    "name": "Potato",
+    "scientific_name": "Solanum tuberosum",
+    "family": "Solanaceae",
+    "spacing_inches": 12,
+    "row_spacing_inches": 30,
+    "days_to_maturity_min": 70,
+    "days_to_maturity_max": 120,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "70\u2013120 days",
+    "how_to": "Plant certified seed potatoes in loose soil once it can be worked and severe frost risk has eased. Space pieces about 12 inches apart and hill soil or mulch around stems as plants grow to protect developing tubers from light. Water evenly, especially during tuber set. Harvest new potatoes when plants flower, or wait until tops die back for storage crops.",
+    "companions": [
+      "bean",
+      "corn"
+    ],
+    "antagonists": [
+      "cucumber",
+      "tomato",
+      "squash"
+    ],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Grow Your Own",
+        "url": "https://www.rhs.org.uk/vegetables",
+        "org": "Royal Horticultural Society"
+      }
+    ]
+  },
+  {
+    "slug": "radish",
+    "name": "Radish",
+    "scientific_name": "Raphanus sativus",
+    "family": "Brassicaceae",
+    "spacing_inches": 2,
+    "row_spacing_inches": 6,
+    "days_to_maturity_min": 21,
+    "days_to_maturity_max": 30,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "21\u201330 days",
+    "how_to": "Radishes are one of the fastest garden crops and shine in cool spring and fall beds. Sow seed directly, then thin to about 2 inches so roots can swell cleanly. Provide consistent moisture; dry spells make roots woody and pungent. Pull as soon as they reach eating size\u2014often in three to four weeks.",
+    "companions": [
+      "carrot",
+      "cucumber",
+      "lettuce",
+      "pea",
+      "squash"
+    ],
+    "antagonists": [],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Vegetable Growing Guides",
+        "url": "https://www.almanac.com/gardening/growing-guides",
+        "org": "Old Farmer\u2019s Almanac"
+      }
+    ]
+  },
+  {
+    "slug": "spinach",
+    "name": "Spinach",
+    "scientific_name": "Spinacia oleracea",
+    "family": "Amaranthaceae",
+    "spacing_inches": 4,
+    "row_spacing_inches": 12,
+    "days_to_maturity_min": 35,
+    "days_to_maturity_max": 45,
+    "sun_needs": "partial",
+    "sun_needs_display": "Partial sun",
+    "maturity_display": "35\u201345 days",
+    "how_to": "Spinach bolts quickly in heat, so grow it in spring and fall or give it afternoon shade in warmer zones. Sow thickly and thin to about 4 inches for full leaves, or cut baby greens sooner. Keep soil cool and moist with mulch. Harvest whole plants or pick outer leaves as needed before flower stalks form.",
+    "companions": [
+      "cabbage",
+      "pea"
+    ],
+    "antagonists": [],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Vegetable Growing Guides",
+        "url": "https://www.almanac.com/gardening/growing-guides",
+        "org": "Old Farmer\u2019s Almanac"
+      }
+    ]
+  },
+  {
+    "slug": "corn",
+    "name": "Sweet Corn",
+    "scientific_name": "Zea mays",
+    "family": "Poaceae",
+    "spacing_inches": 12,
+    "row_spacing_inches": 30,
+    "days_to_maturity_min": 70,
+    "days_to_maturity_max": 90,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "70\u201390 days",
+    "how_to": "Sweet corn is wind-pollinated, so plant in blocks of at least three to four short rows rather than a single line. Sow after soil warms, spacing seeds about 12 inches apart in rows 30 inches apart. Keep moist during tassel and silk stages. Harvest when silks brown and kernels release a milky juice when pierced.",
+    "companions": [
+      "bean",
+      "cucumber",
+      "pea",
+      "squash"
+    ],
+    "antagonists": [],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Home Gardening \u2014 Vegetables",
+        "url": "https://horticulture.cals.cornell.edu/",
+        "org": "Cornell University Horticulture"
+      }
+    ]
+  },
+  {
+    "slug": "chard",
+    "name": "Swiss Chard",
+    "scientific_name": "Beta vulgaris var. cicla",
+    "family": "Amaranthaceae",
+    "spacing_inches": 8,
+    "row_spacing_inches": 12,
+    "days_to_maturity_min": 50,
+    "days_to_maturity_max": 60,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "50\u201360 days",
+    "how_to": "Swiss chard tolerates more heat than spinach and produces over a long season. Thin seedlings to about 8 inches apart and harvest outer leaves while leaving the crown growing. Provide fertile soil and regular water for tender leaves. In mild climates it can overwinter and resume growth in spring.",
+    "companions": [
+      "cabbage",
+      "lettuce",
+      "onion"
+    ],
+    "antagonists": [],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Vegetable Growing Guides",
+        "url": "https://www.almanac.com/gardening/growing-guides",
+        "org": "Old Farmer\u2019s Almanac"
+      }
+    ]
+  },
+  {
+    "slug": "tomato",
+    "name": "Tomato",
+    "scientific_name": "Solanum lycopersicum",
+    "family": "Solanaceae",
+    "spacing_inches": 24,
+    "row_spacing_inches": 36,
+    "days_to_maturity_min": 60,
+    "days_to_maturity_max": 85,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "60\u201385 days",
+    "how_to": "Tomato thrives in full sun and warm soil after all frost danger has passed. Set transplants deep, burying part of the stem so extra roots form along the buried portion. Space plants about 24 inches apart in rows 36 inches apart, and provide sturdy stakes or cages. Water consistently at the base to reduce leaf disease, and mulch to keep moisture even. Harvest when fruits are fully colored and slightly soft to the touch.",
+    "companions": [
+      "basil",
+      "carrot",
+      "lettuce",
+      "onion"
+    ],
+    "antagonists": [
+      "potato",
+      "corn"
+    ],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Vegetable Growing Guides",
+        "url": "https://www.almanac.com/gardening/growing-guides",
+        "org": "Old Farmer\u2019s Almanac"
+      },
+      {
+        "title": "Home Gardening \u2014 Vegetables",
+        "url": "https://horticulture.cals.cornell.edu/",
+        "org": "Cornell University Horticulture"
+      }
+    ]
+  },
+  {
+    "slug": "squash",
+    "name": "Zucchini",
+    "scientific_name": "Cucurbita pepo",
+    "family": "Cucurbitaceae",
+    "spacing_inches": 36,
+    "row_spacing_inches": 48,
+    "days_to_maturity_min": 45,
+    "days_to_maturity_max": 55,
+    "sun_needs": "full",
+    "sun_needs_display": "Full sun",
+    "maturity_display": "45\u201355 days",
+    "how_to": "Zucchini and other summer squash need space, heat, and rich soil. Plant hills or transplants about 36 inches apart after frost, in full sun. Water deeply at the base and watch for squash vine borer and powdery mildew. Harvest fruits at 6\u20138 inches long for best flavor; oversized fruit slows production.",
+    "companions": [
+      "bean",
+      "radish",
+      "corn"
+    ],
+    "antagonists": [
+      "potato"
+    ],
+    "citations": [
+      {
+        "title": "Vegetables \u2014 Growing guides",
+        "url": "https://extension.umn.edu/vegetables",
+        "org": "University of Minnesota Extension"
+      },
+      {
+        "title": "Vegetable Growing Guides",
+        "url": "https://www.almanac.com/gardening/growing-guides",
+        "org": "Old Farmer\u2019s Almanac"
+      }
+    ]
+  }
+]

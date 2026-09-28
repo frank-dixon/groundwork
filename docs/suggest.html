@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2d5a27">
+  <meta name="description" content="Groundwork one-tap layout suggest demo.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <title>Suggest layout — Groundwork</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="border-b border-soil-200 bg-white/90 backdrop-blur sticky top-0 z-40">
+    <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="font-display text-xl font-bold text-leaf-600 tracking-tight">Groundwork</a>
+        <a href="https://frank-dixon.github.io/" class="text-sm font-semibold text-soil-500 hover:text-leaf-600" rel="noopener">Hub</a>
+      </div>
+      <nav class="flex flex-wrap items-center gap-1 sm:gap-2 text-sm font-semibold">
+        <a href="plants.html" class="rounded-lg px-2 py-1.5 text-soil-600 hover:bg-leaf-50 hover:text-leaf-700">Plants</a>
+        <a href="suggest.html" class="rounded-lg px-2 py-1.5 bg-leaf-50 text-leaf-700">Suggest</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-6">
+    <div class="mb-6">
+      <h1 class="text-3xl">One-tap suggest</h1>
+      <p class="text-soil-500">Pick crops, set bed size, and fill a spacing grid with companion-aware placement. Demo only — nothing is saved.</p>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      <section class="card space-y-4">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="label" for="bed-width">Bed width (ft)</label>
+            <input id="bed-width" class="input" type="number" min="2" max="40" step="0.5" value="4">
+          </div>
+          <div>
+            <label class="label" for="bed-length">Bed length (ft)</label>
+            <input id="bed-length" class="input" type="number" min="2" max="60" step="0.5" value="8">
+          </div>
+        </div>
+        <div>
+          <p class="label mb-2">Plants</p>
+          <div id="plant-checks" class="grid max-h-64 grid-cols-2 gap-2 overflow-y-auto sm:grid-cols-3"></div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" id="btn-suggest" class="btn-primary">Suggest layout</button>
+          <button type="button" id="btn-clear" class="btn-secondary">Clear</button>
+        </div>
+        <p id="status" class="text-sm text-soil-500"></p>
+      </section>
+
+      <section class="card">
+        <h2 class="mb-3 text-xl">Bed preview</h2>
+        <div id="bed-canvas-wrap" class="relative w-full overflow-hidden rounded-lg border border-soil-200 bg-leaf-50" style="aspect-ratio: 1 / 1.2;">
+          <svg id="bed-svg" class="h-full w-full" viewBox="0 0 400 480" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Suggested plant placements"></svg>
+        </div>
+        <ul id="legend" class="mt-4 flex flex-wrap gap-2 text-sm"></ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="border-t border-soil-200 bg-white py-6 text-center text-sm text-soil-500">
+    <p>Groundwork · soil-first garden planning</p>
+  </footer>
+  <script src="js/plants.js"></script>
+  <script src="js/suggest.js"></script>
+  <script src="js/app.js" defer></script>
+  <script>
+    const COLORS = [
+      '#2d5a27', '#6aaf52', '#9a7350', '#4a7c3f', '#b89674',
+      '#244820', '#7d5a3c', '#8fc87a', '#5c4033', '#1e3a1b',
+      '#3d2914', '#bbdfab',
+    ];
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    let allPlants = [];
+
+    function selectedPlants() {
+      const boxes = document.querySelectorAll('#plant-checks input:checked');
+      const slugs = new Set([...boxes].map((b) => b.value));
+      return allPlants.filter((p) => slugs.has(p.slug));
+    }
+
+    function renderChecks(plants) {
+      const defaults = new Set(['tomato', 'basil', 'lettuce', 'carrot']);
+      document.getElementById('plant-checks').innerHTML = plants.map((p) => `
+        <label class="flex items-center gap-2 rounded-lg border border-soil-200 bg-sand-50 px-2 py-1.5 text-sm text-soil-700 hover:border-leaf-300">
+          <input type="checkbox" value="${escapeHtml(p.slug)}" ${defaults.has(p.slug) ? 'checked' : ''}>
+          <span>${escapeHtml(p.name)}</span>
+        </label>
+      `).join('');
+    }
+
+    function draw(placements, bed) {
+      const svg = document.getElementById('bed-svg');
+      const legend = document.getElementById('legend');
+      const pad = 24;
+      const vw = 400, vh = 480;
+      const drawW = vw - pad * 2;
+      const drawH = vh - pad * 2;
+      const scale = Math.min(drawW / bed.width_ft, drawH / bed.length_ft);
+      const bedW = bed.width_ft * scale;
+      const bedH = bed.length_ft * scale;
+      const ox = (vw - bedW) / 2;
+      const oy = (vh - bedH) / 2;
+
+      const colorBy = {};
+      let ci = 0;
+      for (const pl of placements) {
+        if (!(pl.plant.slug in colorBy)) colorBy[pl.plant.slug] = COLORS[ci++ % COLORS.length];
+      }
+
+      let marks = '';
+      for (const pl of placements) {
+        const cx = ox + pl.x_ft * scale;
+        const cy = oy + pl.y_ft * scale;
+        const r = Math.max(6, Math.min(14, (pl.plant.spacing_inches / 12) * scale * 0.35));
+        marks += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${colorBy[pl.plant.slug]}" opacity="0.9">
+          <title>${escapeHtml(pl.plant.name)} @ ${pl.x_ft}, ${pl.y_ft} ft</title>
+        </circle>`;
+      }
+
+      svg.innerHTML = `
+        <rect x="0" y="0" width="${vw}" height="${vh}" fill="#f0f7ed"/>
+        <rect x="${ox}" y="${oy}" width="${bedW}" height="${bedH}" fill="#ebe0d4" stroke="#7d5a3c" stroke-width="2" rx="4"/>
+        <text x="${ox + 4}" y="${oy - 6}" font-size="11" fill="#5c4033">${bed.width_ft} × ${bed.length_ft} ft</text>
+        ${marks}
+      `;
+
+      const counts = {};
+      for (const pl of placements) {
+        counts[pl.plant.slug] = (counts[pl.plant.slug] || 0) + 1;
+      }
+      legend.innerHTML = Object.keys(counts).map((slug) => {
+        const p = placements.find((x) => x.plant.slug === slug).plant;
+        return `<li class="inline-flex items-center gap-1.5 rounded-full bg-white border border-soil-200 px-2.5 py-1">
+          <span class="inline-block h-2.5 w-2.5 rounded-full" style="background:${colorBy[slug]}"></span>
+          ${escapeHtml(p.name)} ×${counts[slug]}
+        </li>`;
+      }).join('');
+    }
+
+    function runSuggest() {
+      const plants = selectedPlants();
+      const bed = {
+        width_ft: parseFloat(document.getElementById('bed-width').value) || 4,
+        length_ft: parseFloat(document.getElementById('bed-length').value) || 8,
+      };
+      const status = document.getElementById('status');
+      if (!plants.length) {
+        status.textContent = 'Pick at least one plant.';
+        draw([], bed);
+        return;
+      }
+      const placed = GroundworkSuggest.suggestFill(bed, plants);
+      status.textContent = `Placed ${placed.length} plants across ${plants.length} crop${plants.length === 1 ? '' : 's'}.`;
+      draw(placed, bed);
+    }
+
+    document.getElementById('btn-suggest').addEventListener('click', runSuggest);
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      document.querySelectorAll('#plant-checks input').forEach((b) => { b.checked = false; });
+      document.getElementById('status').textContent = '';
+      const bed = {
+        width_ft: parseFloat(document.getElementById('bed-width').value) || 4,
+        length_ft: parseFloat(document.getElementById('bed-length').value) || 8,
+      };
+      draw([], bed);
+    });
+
+    (async function () {
+      try {
+        allPlants = await GroundworkPlants.loadPlants();
+        renderChecks(allPlants);
+        runSuggest();
+      } catch (err) {
+        document.getElementById('status').textContent = 'Could not load plant data.';
+      }
+    })();
+  </script>
+</body>
+</html>

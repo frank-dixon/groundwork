@@ -5,10 +5,11 @@
   "scripts": {
     "build:css": "tailwindcss -i ./src/css/input.css -o ./static/css/app.css --minify",
     "build:js": "node scripts/build-js.js",
-    "build": "npm run build:css && npm run build:js",
+    "build": "npm run build:css && npm run build:js && npm run sync:docs",
     "watch:css": "tailwindcss -i ./src/css/input.css -o ./static/css/app.css --watch",
     "watch:js": "node scripts/watch-js.js",
-    "watch": "concurrently -n css,js -c green,cyan \"npm run watch:css\" \"npm run watch:js\""
+    "watch": "concurrently -n css,js -c green,cyan \"npm run watch:css\" \"npm run watch:js\"",
+    "sync:docs": "node scripts/sync-docs.js"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
