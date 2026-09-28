@@ -9,8 +9,13 @@
   <link rel="icon" href="icons/icon-192.png" type="image/png">
   <title>Plant — Groundwork</title>
   <link rel="stylesheet" href="css/app.css">
+  <style>
+    .garden-shell {
+      --garden-backdrop: url("images/garden-backdrop.jpg");
+    }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="garden-shell min-h-screen flex flex-col">
   <header class="border-b border-paper-300 bg-paper-50/90 backdrop-blur sticky top-0 z-40">
     <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
       <div class="flex items-center gap-4">
@@ -30,8 +35,12 @@
     </div>
   </main>
 
-  <footer class="border-t border-paper-300 bg-paper-50 py-6 text-center text-sm text-ink-500">
-    <p>Groundwork · soil-first garden planning</p>
+  <footer class="border-t border-paper-300 bg-paper-50/95 py-6 text-center text-sm text-ink-500">
+    <p class="mb-2">Groundwork · soil-first garden planning</p>
+    <p class="mx-auto max-w-3xl px-4 text-xs text-ink-400 leading-relaxed">
+      Photo credits: plant and backdrop images are freely licensed (CC BY / CC BY-SA / CC0 / public domain / Unsplash).
+      See each plant page for creator and license; the plant bible lists every attribution.
+    </p>
   </footer>
   <script src="js/plants.js"></script>
   <script src="js/app.js" defer></script>
@@ -61,25 +70,59 @@
         const comps = (p.companions || []).map((s) => map[s]).filter(Boolean);
         const ants = (p.antagonists || []).map((s) => map[s]).filter(Boolean);
         const cites = p.citations || [];
+        const credit = p.image_credit || {};
+        const varieties = p.varieties || [];
+        const vsrc = p.varieties_source || {};
+        const img = p.image
+          ? `<img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" class="h-56 w-full object-cover sm:h-72" width="640" height="288">`
+          : '';
+        const creditLine = (credit.creator || credit.license) ? `
+          <p class="text-xs text-ink-400">
+            Photo: ${credit.title ? `“${escapeHtml(credit.title)}”` : escapeHtml(p.name)}
+            by ${escapeHtml(credit.creator || 'Unknown')}
+            · ${escapeHtml(credit.license || 'see source')}
+            ${credit.source_url ? `· <a href="${escapeHtml(credit.source_url)}" class="text-turquoise-700 underline" rel="noopener" target="_blank">source</a>` : ''}
+            ${credit.license_url ? `· <a href="${escapeHtml(credit.license_url)}" class="text-turquoise-700 underline" rel="noopener" target="_blank">license</a>` : ''}
+          </p>` : '';
+        const varSection = varieties.length ? `
+          <section class="card mb-4">
+            <h2 class="mb-2 text-xl">Popular varieties</h2>
+            <ul class="space-y-2 text-ink-700">
+              ${varieties.map((v) => `<li><span class="font-semibold text-turquoise-800">${escapeHtml(v.name)}</span>${v.notes ? `<span class="text-ink-600"> — ${escapeHtml(v.notes)}</span>` : ''}</li>`).join('')}
+            </ul>
+            ${vsrc.title || vsrc.org || vsrc.note ? `
+            <p class="mt-3 text-xs text-ink-400 leading-relaxed">
+              Variety notes:
+              ${vsrc.url ? `<a href="${escapeHtml(vsrc.url)}" class="text-turquoise-700 underline" rel="noopener" target="_blank">${escapeHtml(vsrc.title || 'source')}</a>` : escapeHtml(vsrc.title || '')}
+              ${vsrc.org ? ` — ${escapeHtml(vsrc.org)}` : ''}
+              ${vsrc.note ? ` ${escapeHtml(vsrc.note)}` : ''}
+            </p>` : ''}
+          </section>` : '';
         root.innerHTML = `
           <article class="mx-auto max-w-2xl">
             <p class="mb-1 text-sm"><a href="plants.html" class="text-turquoise-600 font-semibold">← Plants</a></p>
-            <h1 class="text-4xl">${escapeHtml(p.name)}</h1>
-            ${p.scientific_name ? `<p class="mb-4 italic text-ink-500">${escapeHtml(p.scientific_name)}${p.family ? ` · ${escapeHtml(p.family)}` : ''}</p>` : ''}
+            <div class="card mb-4 !p-0 overflow-hidden">
+              ${img}
+              <div class="p-5">
+                <h1 class="text-4xl">${escapeHtml(p.name)}</h1>
+                ${p.scientific_name ? `<p class="mb-2 italic text-ink-500">${escapeHtml(p.scientific_name)}${p.family ? ` · ${escapeHtml(p.family)}` : ''}</p>` : ''}
+                ${creditLine}
+              </div>
+            </div>
             <div class="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              <div class="rounded-lg bg-turquoise-50 p-3 text-center">
+              <div class="rounded-lg bg-turquoise-50/95 p-3 text-center border border-turquoise-100">
                 <p class="text-xs font-bold uppercase text-turquoise-600">Spacing</p>
                 <p class="text-lg font-bold text-ink-700">${p.spacing_inches}"</p>
               </div>
-              <div class="rounded-lg bg-turquoise-50 p-3 text-center">
+              <div class="rounded-lg bg-turquoise-50/95 p-3 text-center border border-turquoise-100">
                 <p class="text-xs font-bold uppercase text-turquoise-600">Rows</p>
                 <p class="text-lg font-bold text-ink-700">${p.row_spacing_inches}"</p>
               </div>
-              <div class="rounded-lg bg-paper-200 p-3 text-center">
+              <div class="rounded-lg bg-paper-50/95 p-3 text-center border border-paper-300">
                 <p class="text-xs font-bold uppercase text-ink-500">Sun</p>
                 <p class="text-lg font-bold text-ink-700">${escapeHtml(GroundworkPlants.sunLabel(p))}</p>
               </div>
-              <div class="rounded-lg bg-paper-200 p-3 text-center">
+              <div class="rounded-lg bg-paper-50/95 p-3 text-center border border-paper-300">
                 <p class="text-xs font-bold uppercase text-ink-500">Maturity</p>
                 <p class="text-lg font-bold text-ink-700">${escapeHtml(GroundworkPlants.maturity(p))}</p>
               </div>
@@ -88,22 +131,23 @@
               <h2 class="mb-2 text-xl">How to grow</h2>
               <div class="text-ink-700 leading-relaxed">${paras(p.how_to)}</div>
             </section>
+            ${varSection}
             ${comps.length ? `
-            <section class="mb-4">
+            <section class="mb-4 panel-surface p-4">
               <h2 class="mb-2 text-lg">Companions</h2>
               <div class="flex flex-wrap gap-2">
                 ${comps.map((c) => `<a href="plant.html?slug=${encodeURIComponent(c.slug)}" class="rounded-full bg-turquoise-100 px-3 py-1 text-sm font-semibold text-turquoise-800 hover:bg-turquoise-200">${escapeHtml(c.name)}</a>`).join('')}
               </div>
             </section>` : ''}
             ${ants.length ? `
-            <section class="mb-4">
+            <section class="mb-4 panel-surface p-4">
               <h2 class="mb-2 text-lg">Keep apart from</h2>
               <div class="flex flex-wrap gap-2">
                 ${ants.map((a) => `<a href="plant.html?slug=${encodeURIComponent(a.slug)}" class="rounded-full bg-red-50 px-3 py-1 text-sm font-semibold text-red-800 hover:bg-red-100">${escapeHtml(a.name)}</a>`).join('')}
               </div>
             </section>` : ''}
             ${cites.length ? `
-            <section class="mt-6 border-t border-paper-300 pt-4">
+            <section class="mt-6 border-t border-paper-300 pt-4 panel-surface p-4">
               <h2 class="mb-2 text-sm font-bold uppercase tracking-wider text-ink-500">Sources</h2>
               <ul class="space-y-1 text-sm text-ink-600">
                 ${cites.map((cite) => `
@@ -120,5 +164,6 @@
       }
     })();
   </script>
+
 </body>
 </html>

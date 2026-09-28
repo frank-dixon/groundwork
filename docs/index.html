@@ -5,16 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0B8A8F">
   <meta name="description" content="Groundwork — plan garden beds, place plants, and grow with confidence.">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Groundwork">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon-192.png" type="image/png">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
   <title>Groundwork — garden planner</title>
   <link rel="stylesheet" href="css/app.css">
+  <style>
+    .garden-shell {
+      --garden-backdrop: url("images/garden-backdrop.jpg");
+    }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="garden-shell min-h-screen flex flex-col">
   <header class="border-b border-paper-300 bg-paper-50/90 backdrop-blur sticky top-0 z-40">
     <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
       <div class="flex items-center gap-4">
@@ -29,19 +30,19 @@
   </header>
 
   <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-6">
-    <div class="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+    <div class="mb-6 rounded-lg border border-amber-200 bg-amber-50/95 px-4 py-3 text-sm text-amber-900">
       <strong>Static demo.</strong> Plant bible browse and one-tap layout suggest work offline here.
       Full plot onboarding, saved layouts, and auth need the local Django app
       (<code class="rounded bg-amber-100 px-1">python manage.py runserver</code>).
     </div>
 
     <section class="grid gap-10 md:grid-cols-2 md:items-center">
-      <div>
+      <div class="panel-surface p-6">
         <p class="mb-2 text-sm font-bold uppercase tracking-wider text-turquoise-600">Phase 1</p>
         <h1 class="mb-4 text-4xl leading-tight text-ink-700 sm:text-5xl">Plan the beds. Place the plants. Grow.</h1>
         <p class="mb-6 text-lg text-ink-600">
           Groundwork is a lean garden planner: name your plot, sketch beds, browse a plant bible with real spacing,
-          and one-tap suggest a companion-aware layout.
+          popular varieties, and photo credits, and one-tap suggest a companion-aware layout.
         </p>
         <div class="flex flex-wrap gap-3">
           <a href="plants.html" class="btn-primary">Browse plants</a>
@@ -51,7 +52,7 @@
       <div class="card bg-gradient-to-br from-turquoise-50 to-paper-200 border-turquoise-200">
         <h2 class="mb-3 text-xl">What you get</h2>
         <ul class="space-y-3 text-ink-700">
-          <li class="flex gap-2"><span class="text-turquoise-600 font-bold">✓</span> Plant bible with citations (~22 veggies)</li>
+          <li class="flex gap-2"><span class="text-turquoise-600 font-bold">✓</span> Plant bible with photos, varieties &amp; citations (~22 veggies)</li>
           <li class="flex gap-2"><span class="text-turquoise-600 font-bold">✓</span> One-tap layout suggest (spacing + companions)</li>
           <li class="flex gap-2"><span class="text-turquoise-600 font-bold">✓</span> Installable PWA shell</li>
           <li class="flex gap-2"><span class="text-ink-400 font-bold">·</span> <span class="text-ink-500">Plot onboarding, saved layouts &amp; auth → local Django</span></li>
@@ -60,9 +61,14 @@
     </section>
   </main>
 
-  <footer class="border-t border-paper-300 bg-paper-50 py-6 text-center text-sm text-ink-500">
-    <p>Groundwork · soil-first garden planning</p>
+  <footer class="border-t border-paper-300 bg-paper-50/95 py-6 text-center text-sm text-ink-500">
+    <p class="mb-2">Groundwork · soil-first garden planning</p>
+    <p class="mx-auto max-w-3xl px-4 text-xs text-ink-400 leading-relaxed">
+      Photo credits: plant and backdrop images are freely licensed (CC BY / CC BY-SA / CC0 / public domain / Unsplash).
+      See each plant page for creator and license; the plant bible lists every attribution.
+    </p>
   </footer>
   <script src="js/app.js" defer></script>
+
 </body>
 </html>

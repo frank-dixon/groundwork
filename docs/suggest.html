@@ -9,8 +9,13 @@
   <link rel="icon" href="icons/icon-192.png" type="image/png">
   <title>Suggest layout — Groundwork</title>
   <link rel="stylesheet" href="css/app.css">
+  <style>
+    .garden-shell {
+      --garden-backdrop: url("images/garden-backdrop.jpg");
+    }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="garden-shell min-h-screen flex flex-col">
   <header class="border-b border-paper-300 bg-paper-50/90 backdrop-blur sticky top-0 z-40">
     <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
       <div class="flex items-center gap-4">
@@ -63,8 +68,11 @@
     </div>
   </main>
 
-  <footer class="border-t border-paper-300 bg-paper-50 py-6 text-center text-sm text-ink-500">
-    <p>Groundwork · soil-first garden planning</p>
+  <footer class="border-t border-paper-300 bg-paper-50/95 py-6 text-center text-sm text-ink-500">
+    <p class="mb-2">Groundwork · soil-first garden planning</p>
+    <p class="mx-auto max-w-3xl px-4 text-xs text-ink-400 leading-relaxed">
+      Photo credits appear on plant pages; images are freely licensed and stored in this repo.
+    </p>
   </footer>
   <script src="js/plants.js"></script>
   <script src="js/suggest.js"></script>

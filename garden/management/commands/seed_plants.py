@@ -3,6 +3,26 @@ from django.core.management.base import BaseCommand
 
 from garden.models import Plant
 
+def load_media_extras():
+    """Merge image / varieties fields from docs/data/plants.json when present."""
+    from pathlib import Path
+    import json
+    path = Path(__file__).resolve().parents[3] / 'docs' / 'data' / 'plants.json'
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text())
+    out = {}
+    for row in data:
+        out[row['slug']] = {
+            'image': row.get('image') or '',
+            'image_credit': row.get('image_credit') or {},
+            'varieties': row.get('varieties') or [],
+            'varieties_source': row.get('varieties_source') or {},
+        }
+    return out
+
+
+
 # Citations reused across plants (extension / public-domain guidance).
 CITE_ALMANAC = {
     'title': 'Vegetable Growing Guides',
@@ -476,11 +496,21 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         created = updated = 0
         plants_by_slug = {}
+        media = load_media_extras()
         for data in PLANTS:
             citations = data.pop('citations')
+            extras = media.get(data['slug'], {})
+            defaults = {
+                **data,
+                'citations': citations,
+                'image': extras.get('image', ''),
+                'image_credit': extras.get('image_credit', {}),
+                'varieties': extras.get('varieties', []),
+                'varieties_source': extras.get('varieties_source', {}),
+            }
             obj, was_created = Plant.objects.update_or_create(
                 slug=data['slug'],
-                defaults={**data, 'citations': citations},
+                defaults=defaults,
             )
             # put citations back for safety if re-run in same process
             data['citations'] = citations

@@ -14,8 +14,13 @@
   <link rel="apple-touch-icon" href="{% static 'icons/icon-192.png' %}">
   <title>{% block title %}Groundwork{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  <style>
+    .garden-shell {
+      --garden-backdrop: url("{% static 'images/garden-backdrop.jpg' %}");
+    }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="garden-shell min-h-screen flex flex-col">
   <header class="border-b border-paper-300 bg-paper-50/90 backdrop-blur sticky top-0 z-40">
     <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
       <div class="flex items-center gap-4">
@@ -59,8 +64,12 @@
     {% block content %}{% endblock %}
   </main>
 
-  <footer class="border-t border-paper-300 bg-paper-50 py-6 text-center text-sm text-ink-500">
-    <p>Groundwork · soil-first garden planning</p>
+  <footer class="border-t border-paper-300 bg-paper-50/95 py-6 text-center text-sm text-ink-500">
+    <p class="mb-2">Groundwork · soil-first garden planning</p>
+    <p class="mx-auto max-w-3xl px-4 text-xs text-ink-400 leading-relaxed">
+      Photo credits: plant and backdrop images are freely licensed (CC BY / CC BY-SA / CC0 / public domain / Unsplash).
+      See each plant page for creator and license, and the plant bible footer for the full list.
+    </p>
   </footer>
   <script src="{% static 'js/app.js' %}" defer></script>
   {% block extra_js %}{% endblock %}

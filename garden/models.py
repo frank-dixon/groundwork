@@ -38,6 +38,26 @@ class Plant(models.Model):
         default=list,
         help_text='List of {title, url, org} citation dicts.',
     )
+    image = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text='Relative static path, e.g. images/plants/tomato.jpg',
+    )
+    image_credit = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text='Attribution: {creator, license, license_url, source_url, title}.',
+    )
+    varieties = models.JSONField(
+        default=list,
+        blank=True,
+        help_text='Popular cultivars: list of {name, notes?}.',
+    )
+    varieties_source = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text='Optional {title, org, url, note} for variety list provenance.',
+    )
 
     class Meta:
         ordering = ['name']

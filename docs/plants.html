@@ -4,13 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0B8A8F">
-  <meta name="description" content="Groundwork plant bible — common vegetables with spacing and citations.">
+  <meta name="description" content="Groundwork plant bible — common vegetables with spacing, varieties, and citations.">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon-192.png" type="image/png">
   <title>Plant bible — Groundwork</title>
   <link rel="stylesheet" href="css/app.css">
+  <style>
+    .garden-shell {
+      --garden-backdrop: url("images/garden-backdrop.jpg");
+    }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="garden-shell min-h-screen flex flex-col">
   <header class="border-b border-paper-300 bg-paper-50/90 backdrop-blur sticky top-0 z-40">
     <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
       <div class="flex items-center gap-4">
@@ -25,34 +30,61 @@
   </header>
 
   <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-6">
-    <div class="mb-6">
+    <div class="mb-6 panel-surface p-5">
       <h1 class="text-3xl">Plant bible</h1>
-      <p class="text-ink-500">Common vegetables with spacing, growth, and companions — cited from open extension sources.</p>
+      <p class="text-ink-500">Common vegetables with spacing, popular varieties, and companions — cited from open extension sources.</p>
     </div>
     <div id="plant-grid" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       <p class="text-ink-500 col-span-full">Loading plants…</p>
     </div>
+    <section class="mt-10 panel-surface p-5">
+      <h2 class="mb-2 text-sm font-bold uppercase tracking-wider text-ink-500">Photo credits</h2>
+      <ul id="photo-credits" class="space-y-1 text-xs text-ink-500 max-h-48 overflow-y-auto"></ul>
+    </section>
   </main>
 
-  <footer class="border-t border-paper-300 bg-paper-50 py-6 text-center text-sm text-ink-500">
-    <p>Groundwork · soil-first garden planning</p>
+  <footer class="border-t border-paper-300 bg-paper-50/95 py-6 text-center text-sm text-ink-500">
+    <p class="mb-2">Groundwork · soil-first garden planning</p>
+    <p class="mx-auto max-w-3xl px-4 text-xs text-ink-400 leading-relaxed">
+      Photo credits: plant and backdrop images are freely licensed (CC BY / CC BY-SA / CC0 / public domain / Unsplash).
+      See each plant page for creator and license; the plant bible lists every attribution.
+    </p>
   </footer>
   <script src="js/plants.js"></script>
   <script src="js/app.js" defer></script>
   <script>
     (async function () {
       const grid = document.getElementById('plant-grid');
+      const credits = document.getElementById('photo-credits');
       try {
         const plants = await GroundworkPlants.loadPlants();
-        grid.innerHTML = plants.map((p) => `
-          <a href="plant.html?slug=${encodeURIComponent(p.slug)}" class="card hover:border-turquoise-400 transition">
-            <h2 class="text-lg text-turquoise-700">${escapeHtml(p.name)}</h2>
-            <p class="text-xs text-ink-400 italic">${escapeHtml(p.scientific_name || '')}</p>
-            <p class="mt-2 text-sm text-ink-600">
-              ${p.spacing_inches}" spacing · ${escapeHtml(GroundworkPlants.sunLabel(p))} · ${escapeHtml(GroundworkPlants.maturity(p))}
-            </p>
-          </a>
-        `).join('');
+        grid.innerHTML = plants.map((p) => {
+          const vars = (p.varieties || []).slice(0, 3).map((v) => v.name).join(', ');
+          const more = (p.varieties || []).length > 3 ? '…' : '';
+          const img = p.image
+            ? `<img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" class="h-36 w-full object-cover" loading="lazy" width="400" height="144">`
+            : '';
+          return `
+          <a href="plant.html?slug=${encodeURIComponent(p.slug)}" class="card hover:border-turquoise-400 transition overflow-hidden !p-0">
+            ${img}
+            <div class="p-4">
+              <h2 class="text-lg text-turquoise-700">${escapeHtml(p.name)}</h2>
+              <p class="text-xs text-ink-400 italic">${escapeHtml(p.scientific_name || '')}</p>
+              <p class="mt-2 text-sm text-ink-600">
+                ${p.spacing_inches}" spacing · ${escapeHtml(GroundworkPlants.sunLabel(p))} · ${escapeHtml(GroundworkPlants.maturity(p))}
+              </p>
+              ${vars ? `<p class="mt-1 text-xs text-ink-400">Varieties: ${escapeHtml(vars)}${more}</p>` : ''}
+            </div>
+          </a>`;
+        }).join('');
+        credits.innerHTML = plants.map((p) => {
+          const c = p.image_credit || {};
+          if (!c.creator && !c.license) return '';
+          const src = c.source_url
+            ? ` <a href="${escapeHtml(c.source_url)}" class="text-turquoise-700 underline" rel="noopener" target="_blank">source</a>`
+            : '';
+          return `<li><span class="font-semibold text-ink-600">${escapeHtml(p.name)}:</span> ${escapeHtml(c.title || p.name)} — ${escapeHtml(c.creator || 'Unknown')} (${escapeHtml(c.license || 'see source')})${src}</li>`;
+        }).join('');
       } catch (err) {
         grid.innerHTML = `<p class="text-red-700 col-span-full">Could not load plant data.</p>`;
       }
@@ -61,5 +93,6 @@
       return String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     }
   </script>
+
 </body>
 </html>

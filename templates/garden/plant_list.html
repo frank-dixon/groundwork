@@ -1,21 +1,51 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Plant bible — Groundwork{% endblock %}
 {% block content %}
-<div class="mb-6">
+<div class="mb-6 panel-surface p-5">
   <h1 class="text-3xl">Plant bible</h1>
-  <p class="text-ink-500">Common vegetables with spacing, growth, and companions — cited from open extension sources.</p>
+  <p class="text-ink-500">Common vegetables with spacing, popular varieties, and companions — cited from open extension sources.</p>
 </div>
 <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
   {% for plant in plants %}
-  <a href="{{ plant.get_absolute_url }}" class="card hover:border-turquoise-400 transition">
-    <h2 class="text-lg text-turquoise-700">{{ plant.name }}</h2>
-    <p class="text-xs text-ink-400 italic">{{ plant.scientific_name }}</p>
-    <p class="mt-2 text-sm text-ink-600">
-      {{ plant.spacing_inches }}" spacing · {{ plant.get_sun_needs_display }} · {{ plant.maturity_display }}
-    </p>
+  <a href="{{ plant.get_absolute_url }}" class="card hover:border-turquoise-400 transition overflow-hidden !p-0">
+    {% if plant.image %}
+    <img src="{% static plant.image %}" alt="{{ plant.name }}" class="h-36 w-full object-cover" loading="lazy" width="400" height="144">
+    {% endif %}
+    <div class="p-4">
+      <h2 class="text-lg text-turquoise-700">{{ plant.name }}</h2>
+      <p class="text-xs text-ink-400 italic">{{ plant.scientific_name }}</p>
+      <p class="mt-2 text-sm text-ink-600">
+        {{ plant.spacing_inches }}" spacing · {{ plant.get_sun_needs_display }} · {{ plant.maturity_display }}
+      </p>
+      {% if plant.varieties %}
+      <p class="mt-1 text-xs text-ink-400">
+        Varieties: {% for v in plant.varieties|slice:":3" %}{{ v.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% if plant.varieties|length > 3 %}…{% endif %}
+      </p>
+      {% endif %}
+    </div>
   </a>
   {% empty %}
-  <p class="text-ink-500 col-span-full">No plants seeded yet. Run <code class="rounded bg-paper-200 px-1">python manage.py seed_plants</code>.</p>
+  <p class="text-ink-500 col-span-full panel-surface p-4">No plants seeded yet. Run <code class="rounded bg-paper-200 px-1">python manage.py seed_plants</code>.</p>
   {% endfor %}
 </div>
+
+<section class="mt-10 panel-surface p-5">
+  <h2 class="mb-2 text-sm font-bold uppercase tracking-wider text-ink-500">Photo credits</h2>
+  <ul class="space-y-1 text-xs text-ink-500 max-h-48 overflow-y-auto">
+    {% for plant in plants %}
+      {% if plant.image_credit %}
+      <li>
+        <span class="font-semibold text-ink-600">{{ plant.name }}:</span>
+        {{ plant.image_credit.title|default:plant.name }}
+        — {{ plant.image_credit.creator|default:"Unknown" }}
+        ({{ plant.image_credit.license|default:"see source" }})
+        {% if plant.image_credit.source_url %}
+          <a href="{{ plant.image_credit.source_url }}" class="text-turquoise-700 underline" rel="noopener" target="_blank">source</a>
+        {% endif %}
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</section>
 {% endblock %}

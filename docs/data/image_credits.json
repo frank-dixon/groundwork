@@ -1,0 +1,232 @@
+{
+  "backdrop": {
+    "creator": "Gabriel Jimenez",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "source_url": "https://unsplash.com/photos/xYF439jazdY",
+    "title": "Garden plants",
+    "image": "images/garden-backdrop.jpg"
+  },
+  "plants": [
+    {
+      "slug": "basil",
+      "name": "Basil",
+      "image": "images/plants/basil.jpg",
+      "creator": "alusch",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "source_url": "https://www.flickr.com/photos/185077236@N04/52256364397",
+      "title": "Bright Basil"
+    },
+    {
+      "slug": "beet",
+      "name": "Beet",
+      "image": "images/plants/beet.jpg",
+      "creator": "Unknown",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://www.rawpixel.com/image/5917510/image-flower-public-domain-plant",
+      "title": "Free beetroot salad image"
+    },
+    {
+      "slug": "broccoli",
+      "name": "Broccoli",
+      "image": "images/plants/broccoli.jpg",
+      "creator": "AdrielTan",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "source_url": "https://www.flickr.com/photos/63694095@N08/15408443911",
+      "title": "broccoli."
+    },
+    {
+      "slug": "bean",
+      "name": "Bush Bean",
+      "image": "images/plants/bean.jpg",
+      "creator": "Foodie Girl",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://stocksnap.io/photo/green-beans-CH8ETO2X4G",
+      "title": "Green Beans"
+    },
+    {
+      "slug": "cabbage",
+      "name": "Cabbage",
+      "image": "images/plants/cabbage.jpg",
+      "creator": "Anya Chernik",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "source_url": "https://www.flickr.com/photos/197657452@N05/53166343033",
+      "title": "Cabbage texture wallpaper"
+    },
+    {
+      "slug": "carrot",
+      "name": "Carrot",
+      "image": "images/plants/carrot.jpg",
+      "creator": "USDAgov",
+      "license": "Public Domain Mark 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_url": "https://www.flickr.com/photos/41284017@N08/52474179001",
+      "title": "20221028-FNS-RC-0001"
+    },
+    {
+      "slug": "cilantro",
+      "name": "Cilantro",
+      "image": "images/plants/cilantro.jpg",
+      "creator": "alusch",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "source_url": "https://www.flickr.com/photos/185077236@N04/52376696762",
+      "title": "Munching on Cilantro"
+    },
+    {
+      "slug": "cucumber",
+      "name": "Cucumber",
+      "image": "images/plants/cucumber.jpg",
+      "creator": "Howard J Duncan",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "source_url": "https://www.flickr.com/photos/28045633@N00/51633977648",
+      "title": "Cucumbers"
+    },
+    {
+      "slug": "eggplant",
+      "name": "Eggplant",
+      "image": "images/plants/eggplant.jpg",
+      "creator": "Kristoffer Fredriksson",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://stocksnap.io/photo/eggplant-chinese-7RAKJKZZF3",
+      "title": "Eggplant Chinese"
+    },
+    {
+      "slug": "garlic",
+      "name": "Garlic",
+      "image": "images/plants/garlic.jpg",
+      "creator": "Foodie Girl",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://stocksnap.io/photo/garlic-spice-AGRMVP0ADI",
+      "title": "Garlic Spice"
+    },
+    {
+      "slug": "kale",
+      "name": "Kale",
+      "image": "images/plants/kale.jpg",
+      "creator": "Unknown",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://www.rawpixel.com/image/11189603/leafy-green-garden-vegetable-lettuce",
+      "title": "Leafy green garden vegetable lettuce"
+    },
+    {
+      "slug": "lettuce",
+      "name": "Lettuce",
+      "image": "images/plants/lettuce.jpg",
+      "creator": "Jeffrey Betts",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://stocksnap.io/photo/salad-lettuce-Z0133GNPXT",
+      "title": "Salad Lettuce"
+    },
+    {
+      "slug": "onion",
+      "name": "Onion",
+      "image": "images/plants/onion.jpg",
+      "creator": "Fir0002",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "source_url": "https://commons.wikimedia.org/wiki/File%3AOnions.jpg",
+      "title": "Onions"
+    },
+    {
+      "slug": "pea",
+      "name": "Pea",
+      "image": "images/plants/pea.jpg",
+      "creator": "Unknown",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://www.rawpixel.com/image/13965506/image-plant-medicine-leaf",
+      "title": "cultivar garden pea (Pisum sativum)"
+    },
+    {
+      "slug": "pepper",
+      "name": "Pepper",
+      "image": "images/plants/pepper.jpg",
+      "creator": "Louis Hansel",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license",
+      "source_url": "https://unsplash.com/photos/surQ2mkMUAk",
+      "title": "Bell peppers"
+    },
+    {
+      "slug": "potato",
+      "name": "Potato",
+      "image": "images/plants/potato.jpg",
+      "creator": "Scott Bauer, USDA ARS",
+      "license": "Public domain (US government work)",
+      "license_url": "https://www.usa.gov/government-works",
+      "source_url": "https://commons.wikimedia.org/wiki/File%3APatates.jpg",
+      "title": "Potatoes"
+    },
+    {
+      "slug": "radish",
+      "name": "Radish",
+      "image": "images/plants/radish.jpg",
+      "creator": "Skitter Photo",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://stocksnap.io/photo/radish-vegetables-AYSFS91ZMX",
+      "title": "Radish Vegetables"
+    },
+    {
+      "slug": "spinach",
+      "name": "Spinach",
+      "image": "images/plants/spinach.jpg",
+      "creator": "Forest & Kim Starr",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "source_url": "https://commons.wikimedia.org/wiki/File%3ASpinach_leaves.jpg",
+      "title": "Spinach leaves"
+    },
+    {
+      "slug": "corn",
+      "name": "Sweet Corn",
+      "image": "images/plants/corn.jpg",
+      "creator": "vanhookc",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "source_url": "https://www.flickr.com/photos/97651299@N00/52350280321",
+      "title": "Sweet memories! [Explored]"
+    },
+    {
+      "slug": "chard",
+      "name": "Swiss Chard",
+      "image": "images/plants/chard.jpg",
+      "creator": "Foodie Girl",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://stocksnap.io/photo/vegetable-leaves-VOVT9BMUMY",
+      "title": "Vegetable Leaves"
+    },
+    {
+      "slug": "tomato",
+      "name": "Tomato",
+      "image": "images/plants/tomato.jpg",
+      "creator": "Burst",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "https://stocksnap.io/photo/wet-tomatoes-YT8WYBZTHL",
+      "title": "Wet Tomatoes"
+    },
+    {
+      "slug": "squash",
+      "name": "Zucchini",
+      "image": "images/plants/squash.jpg",
+      "creator": "Scott Bauer, USDA ARS",
+      "license": "Public domain (US government work)",
+      "license_url": "https://www.usa.gov/government-works",
+      "source_url": "https://commons.wikimedia.org/wiki/File%3AZucchini-Whole.jpg",
+      "title": "Zucchini"
+    }
+  ]
+}

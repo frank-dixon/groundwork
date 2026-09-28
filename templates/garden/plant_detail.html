@@ -1,25 +1,47 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}{{ plant.name }} — Groundwork{% endblock %}
 {% block content %}
 <article class="mx-auto max-w-2xl">
   <p class="mb-1 text-sm"><a href="{% url 'plant_list' %}" class="text-turquoise-600 font-semibold">← Plants</a></p>
-  <h1 class="text-4xl">{{ plant.name }}</h1>
-  {% if plant.scientific_name %}<p class="mb-4 italic text-ink-500">{{ plant.scientific_name }}{% if plant.family %} · {{ plant.family }}{% endif %}</p>{% endif %}
+  <div class="card mb-4 !p-0 overflow-hidden">
+    {% if plant.image %}
+    <img src="{% static plant.image %}" alt="{{ plant.name }}" class="h-56 w-full object-cover sm:h-72" width="640" height="288">
+    {% endif %}
+    <div class="p-5">
+      <h1 class="text-4xl">{{ plant.name }}</h1>
+      {% if plant.scientific_name %}<p class="mb-2 italic text-ink-500">{{ plant.scientific_name }}{% if plant.family %} · {{ plant.family }}{% endif %}</p>{% endif %}
+      {% if plant.image_credit %}
+      <p class="text-xs text-ink-400">
+        Photo:
+        {% if plant.image_credit.title %}“{{ plant.image_credit.title }}”{% else %}{{ plant.name }}{% endif %}
+        by {{ plant.image_credit.creator|default:"Unknown" }}
+        · {{ plant.image_credit.license|default:"see source" }}
+        {% if plant.image_credit.source_url %}
+          · <a href="{{ plant.image_credit.source_url }}" class="text-turquoise-700 underline" rel="noopener" target="_blank">source</a>
+        {% endif %}
+        {% if plant.image_credit.license_url %}
+          · <a href="{{ plant.image_credit.license_url }}" class="text-turquoise-700 underline" rel="noopener" target="_blank">license</a>
+        {% endif %}
+      </p>
+      {% endif %}
+    </div>
+  </div>
 
   <div class="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-    <div class="rounded-lg bg-turquoise-50 p-3 text-center">
+    <div class="rounded-lg bg-turquoise-50/95 p-3 text-center border border-turquoise-100">
       <p class="text-xs font-bold uppercase text-turquoise-600">Spacing</p>
       <p class="text-lg font-bold text-ink-700">{{ plant.spacing_inches }}"</p>
     </div>
-    <div class="rounded-lg bg-turquoise-50 p-3 text-center">
+    <div class="rounded-lg bg-turquoise-50/95 p-3 text-center border border-turquoise-100">
       <p class="text-xs font-bold uppercase text-turquoise-600">Rows</p>
       <p class="text-lg font-bold text-ink-700">{{ plant.row_spacing_inches }}"</p>
     </div>
-    <div class="rounded-lg bg-paper-200 p-3 text-center">
+    <div class="rounded-lg bg-paper-50/95 p-3 text-center border border-paper-300">
       <p class="text-xs font-bold uppercase text-ink-500">Sun</p>
       <p class="text-lg font-bold text-ink-700">{{ plant.get_sun_needs_display }}</p>
     </div>
-    <div class="rounded-lg bg-paper-200 p-3 text-center">
+    <div class="rounded-lg bg-paper-50/95 p-3 text-center border border-paper-300">
       <p class="text-xs font-bold uppercase text-ink-500">Maturity</p>
       <p class="text-lg font-bold text-ink-700">{{ plant.maturity_display }}</p>
     </div>
@@ -30,8 +52,34 @@
     <div class="text-ink-700 leading-relaxed">{{ plant.how_to|linebreaks }}</div>
   </section>
 
+  {% if plant.varieties %}
+  <section class="card mb-4">
+    <h2 class="mb-2 text-xl">Popular varieties</h2>
+    <ul class="space-y-2 text-ink-700">
+      {% for v in plant.varieties %}
+      <li>
+        <span class="font-semibold text-turquoise-800">{{ v.name }}</span>
+        {% if v.notes %}<span class="text-ink-600"> — {{ v.notes }}</span>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% if plant.varieties_source %}
+    <p class="mt-3 text-xs text-ink-400 leading-relaxed">
+      Variety notes:
+      {% if plant.varieties_source.url %}
+        <a href="{{ plant.varieties_source.url }}" class="text-turquoise-700 underline" rel="noopener" target="_blank">{{ plant.varieties_source.title|default:"source" }}</a>
+      {% else %}
+        {{ plant.varieties_source.title|default:"extension and seed-catalog standards" }}
+      {% endif %}
+      {% if plant.varieties_source.org %} — {{ plant.varieties_source.org }}{% endif %}
+      {% if plant.varieties_source.note %} {{ plant.varieties_source.note }}{% endif %}
+    </p>
+    {% endif %}
+  </section>
+  {% endif %}
+
   {% if plant.companions.all %}
-  <section class="mb-4">
+  <section class="mb-4 panel-surface p-4">
     <h2 class="mb-2 text-lg">Companions</h2>
     <div class="flex flex-wrap gap-2">
       {% for c in plant.companions.all %}
@@ -42,7 +90,7 @@
   {% endif %}
 
   {% if plant.antagonists.all %}
-  <section class="mb-4">
+  <section class="mb-4 panel-surface p-4">
     <h2 class="mb-2 text-lg">Keep apart from</h2>
     <div class="flex flex-wrap gap-2">
       {% for a in plant.antagonists.all %}
@@ -53,7 +101,7 @@
   {% endif %}
 
   {% if plant.citations %}
-  <section class="mt-6 border-t border-paper-300 pt-4">
+  <section class="mt-6 border-t border-paper-300 pt-4 panel-surface p-4">
     <h2 class="mb-2 text-sm font-bold uppercase tracking-wider text-ink-500">Sources</h2>
     <ul class="space-y-1 text-sm text-ink-600">
       {% for cite in plant.citations %}
