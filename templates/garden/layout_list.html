@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Layouts — Groundwork{% endblock %}
+{% block content %}
+<div class="mb-6 flex items-end justify-between gap-3">
+  <h1 class="text-3xl">Layouts</h1>
+  <a href="{% url 'layout_create' %}" class="btn-primary text-sm">New layout</a>
+</div>
+<div class="space-y-3">
+  {% for layout in layouts %}
+  <a href="{{ layout.get_absolute_url }}" class="card flex items-center justify-between hover:border-leaf-400 transition">
+    <div>
+      <h2 class="text-lg text-leaf-700">{{ layout.name }}</h2>
+      <p class="text-sm text-soil-500">{{ layout.beds.count }} beds · updated {{ layout.updated_at|date:"M j, Y" }}</p>
+    </div>
+    <span class="text-leaf-600 font-bold">→</span>
+  </a>
+  {% empty %}
+  <p class="text-soil-500">No layouts. <a href="{% url 'onboarding' %}" class="text-leaf-600 font-semibold">Create a plot</a>.</p>
+  {% endfor %}
+</div>
+{% endblock %}

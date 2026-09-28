@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}{{ layout.name }} — Groundwork{% endblock %}
+{% block content %}
+<div class="mb-6 flex flex-wrap items-start justify-between gap-3">
+  <div>
+    <h1 class="text-3xl">{{ layout.name }}</h1>
+    <p class="text-soil-500">
+      {% if layout.plot %}Plot: {{ layout.plot.name }} ({{ layout.plot.width_ft }}×{{ layout.plot.length_ft }} ft){% endif %}
+      {% if layout.notes %} · {{ layout.notes|truncatewords:12 }}{% endif %}
+    </p>
+  </div>
+  <div class="flex flex-wrap gap-2">
+    <a href="{% url 'layout_edit' layout.pk %}" class="btn-secondary text-sm">Edit</a>
+    <form method="post" action="{% url 'layout_delete' layout.pk %}">{% csrf_token %}
+      <button type="submit" class="btn-secondary text-sm text-red-700" data-confirm="Delete this layout?">Delete</button>
+    </form>
+  </div>
+</div>
+
+{# Visual bed map #}
+{% if layout.plot %}
+<div class="card mb-6 overflow-x-auto">
+  <h2 class="mb-3 text-lg">Plot map</h2>
+  {% widthratio layout.plot.width_ft 1 24 as map_w %}
+  {% widthratio layout.plot.length_ft 1 24 as map_h %}
+  <div class="relative mx-auto border-2 border-soil-400 bg-soil-100" style="width: min(100%, {{ map_w }}px); aspect-ratio: {{ layout.plot.width_ft }} / {{ layout.plot.length_ft }}; max-height: 360px;">
+    {% for bed in layout.beds.all %}
+    <div class="absolute border-2 border-leaf-600 bg-leaf-200/70 overflow-hidden text-[10px] leading-tight p-0.5"
+         title="{{ bed.name }}"
+         style="left: {% widthratio bed.x_ft layout.plot.width_ft 100 %}%; top: {% widthratio bed.y_ft layout.plot.length_ft 100 %}%; width: {% widthratio bed.width_ft layout.plot.width_ft 100 %}%; height: {% widthratio bed.length_ft layout.plot.length_ft 100 %}%;">
+      <span class="font-bold text-leaf-800">{{ bed.name }}</span>
+      {% for p in bed.placements.all %}
+      <span class="absolute rounded-full bg-leaf-600 text-white" style="left: {% widthratio p.x_ft bed.width_ft 100 %}%; top: {% widthratio p.y_ft bed.length_ft 100 %}%; width: 8px; height: 8px; transform: translate(-50%,-50%);" title="{{ p.plant.name }}"></span>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{# Suggest #}
+<div class="card mb-6">
+  <h2 class="mb-2 text-lg">One-tap suggest</h2>
+  <p class="mb-4 text-sm text-soil-500">Pick crops; we’ll fill every bed using spacing and companions (clears existing placements).</p>
+  <form method="post" action="{% url 'layout_suggest' layout.pk %}">
+    {% csrf_token %}
+    <div class="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
+      {% for choice in suggest_form.plants %}
+      <label class="flex items-center gap-2 rounded-lg border border-soil-200 px-2 py-1.5 text-sm hover:bg-leaf-50 cursor-pointer">
+        {{ choice.tag }} <span>{{ choice.choice_label }}</span>
+      </label>
+      {% endfor %}
+    </div>
+    <button type="submit" class="btn-primary" data-confirm="Replace all placements in this layout’s beds?">Suggest layout</button>
+  </form>
+</div>
+
+{# Beds #}
+<div class="mb-4 flex items-center justify-between">
+  <h2 class="text-2xl">Beds</h2>
+</div>
+
+{% for bed in layout.beds.all %}
+<div class="card mb-4">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+    <h3 class="text-lg text-leaf-700">{{ bed.name }}
+      <span class="text-sm font-normal text-soil-500">{{ bed.width_ft }}×{{ bed.length_ft }} ft</span>
+    </h3>
+    <div class="flex gap-2">
+      <a href="{% url 'placement_add' bed.pk %}" class="btn-ghost text-sm">+ Plant</a>
+      <form method="post" action="{% url 'bed_delete' bed.pk %}">{% csrf_token %}
+        <button type="submit" class="text-sm text-red-600 font-semibold" data-confirm="Delete this bed?">Remove</button>
+      </form>
+    </div>
+  </div>
+  {% if bed.placements.all %}
+  <ul class="divide-y divide-soil-100">
+    {% for p in bed.placements.all %}
+    <li class="flex items-center justify-between py-2 text-sm">
+      <span>
+        <a href="{{ p.plant.get_absolute_url }}" class="font-semibold text-leaf-700 hover:underline">{{ p.plant.name }}</a>
+        ×{{ p.quantity }}
+        <span class="text-soil-400">({{ p.x_ft }}, {{ p.y_ft }} ft)</span>
+      </span>
+      <form method="post" action="{% url 'placement_delete' p.pk %}">{% csrf_token %}
+        <button type="submit" class="text-soil-400 hover:text-red-600">×</button>
+      </form>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="text-sm text-soil-400">Empty — add plants or run Suggest.</p>
+  {% endif %}
+</div>
+{% empty %}
+<p class="mb-4 text-soil-500">No beds yet. Add one below.</p>
+{% endfor %}
+
+<details class="card">
+  <summary class="cursor-pointer font-display font-bold text-soil-700">Add a bed</summary>
+  <form method="post" action="{% url 'bed_create' layout.pk %}" class="mt-4 space-y-3">
+    {% csrf_token %}
+    {% for field in bed_form %}
+    <div>
+      <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn-primary">Add bed</button>
+  </form>
+</details>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Log in — Groundwork{% endblock %}
+{% block content %}
+<div class="mx-auto max-w-md">
+  <h1 class="mb-6 text-3xl">Log in</h1>
+  <form method="post" class="card space-y-4">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+    <div class="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{{ form.non_field_errors|striptags }}</div>
+    {% endif %}
+    {% for field in form %}
+    <div>
+      <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+      <input class="input" type="{% if 'password' in field.name %}password{% else %}text{% endif %}"
+             name="{{ field.name }}" id="{{ field.id_for_label }}" required
+             {% if field.value %}value="{{ field.value }}"{% endif %}>
+      {% if field.errors %}<p class="mt-1 text-sm text-red-600">{{ field.errors|striptags }}</p>{% endif %}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn-primary w-full">Log in</button>
+  </form>
+  <p class="mt-4 text-center text-sm text-soil-600">No account? <a href="{% url 'register' %}" class="font-semibold text-leaf-600">Sign up</a></p>
+</div>
+{% endblock %}

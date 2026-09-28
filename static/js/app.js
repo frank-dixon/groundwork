@@ -1,0 +1,1 @@
+(function(){"serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})}),document.querySelectorAll("[data-confirm]").forEach(function(n){n.addEventListener("click",function(t){window.confirm(n.getAttribute("data-confirm"))||t.preventDefault()})})})();

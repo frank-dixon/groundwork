@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+*.sqlite3
+db.sqlite3
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Django
+staticfiles/
+media/
+*.log
+local_settings.py
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+.env
+.coverage
+htmlcov/
+
+# Build artifacts (keep built CSS/JS for simple deploy)
+# static/css/app.css and static/js/*.js are committed after npm run build
